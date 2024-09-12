@@ -53,8 +53,8 @@ class ChartController extends Controller
         ];
 
         // Mengambil data E-Court dari database
-        $eCourtGugatan = floatval(rtrim($table[0]['E-COURT'], '%'));
-        $eCourtPermohonan = floatval(rtrim($table[1]['E-COURT'], '%'));
+        $eCourtGugatan = isset($table[0]['E-COURT']) ? floatval(rtrim($table[0]['E-COURT'], '%')) : 0;
+        $eCourtPermohonan = isset($table[1]['E-COURT']) ? floatval(rtrim($table[1]['E-COURT'], '%')) : 0;
 
         // Membuat grafik progress bar untuk Gugatan
         $qcGugatan = new QuickChart();
@@ -93,7 +93,7 @@ class ChartController extends Controller
         $progressBarUrlPermohonan = $qcPermohonan->getUrl();
 
         // Menghitung rasio dan membuat grafik radial gauge untuk Gugatan
-        $rasioGugatan = floatval($table[0]['PUTUS']) / floatval($table[0]['MASUK']) * 100;
+        $rasioGugatan = isset($table[0]['PUTUS']) && isset($table[0]['MASUK']) ? floatval($table[0]['PUTUS']) / floatval($table[0]['MASUK']) * 100 : 0;
 
         $qcRadialGugatan = new QuickChart();
         $qcRadialGugatan->setWidth(300);
@@ -113,7 +113,7 @@ class ChartController extends Controller
         $radialChartUrlGugatan = $qcRadialGugatan->getUrl();
 
         // Menghitung rasio dan membuat grafik radial gauge untuk Permohonan
-        $rasioPermohonan = floatval($table[1]['PUTUS']) / floatval($table[1]['MASUK']) * 100;
+        $rasioPermohonan = isset($table[1]['PUTUS']) && isset($table[1]['MASUK']) ? floatval($table[1]['PUTUS']) / floatval($table[1]['MASUK']) * 100 : 0;
         $qcRadialPermohonan = new QuickChart();
         $qcRadialPermohonan->setWidth(300);
         $qcRadialPermohonan->setHeight(100);
@@ -134,8 +134,8 @@ class ChartController extends Controller
         // Mendapatkan nama bulan saat ini
         $currentMonth = date('F');
 
-        $bhtG = $table[0]['BHT'];
-        $bhtP = $table[1]['BHT'];
+        $bhtG = isset($table[0]['BHT']) ? $table[0]['BHT'] : 0;
+        $bhtP = isset($table[1]['BHT']) ? $table[1]['BHT'] : 0;
 
         return view('line_chart', [
             'chartConfig' => $chartConfig,

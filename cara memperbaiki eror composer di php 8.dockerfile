@@ -55,3 +55,8 @@ DB::table('stastistik')->get();
 
 npm install -D tailwindcss
 npx tailwindcss init
+
+
+cd C:\laragon\www\chart
+npm install -D tailwindcss
+npx tailwindcss init

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <style>
         body {
             background: linear-gradient(to right, #3b82f6, #9333ea);
@@ -35,14 +37,9 @@
             display: flex;
             justify-content: center;
         }
-        .chart-container {
-            border: 4px solid #e5e7eb;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-        .chart {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        canvas {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -50,10 +47,52 @@
     <div class="container">
         <h1 class="title">Chart</h1>
         <div class="chart-wrapper">
-            <div class="chart-container">
-                <img src="{{ $chartUrl }}" alt="Chart" class="chart">
-            </div>
+            <canvas id="myChart"></canvas>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const chartData = {
+                labels: {!! json_encode($labels) !!},
+                datasets: [
+                    {
+                        label: 'Pagu',
+                        data: {!! json_encode($paguData) !!},
+                        backgroundColor: '#4caf50',
+                        borderColor: '#4caf50',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Realisasi',
+                        data: {!! json_encode($realisasiData) !!},
+                        backgroundColor: '#f44336',
+                        borderColor: '#f44336',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            const config = {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    plugins: {
+                        datalabels: {
+                            display: false
+                        }
+                    },
+                    onClick: function (evt, item) {
+                        if (item.length) {
+                            const datasetIndex = item[0].datasetIndex;
+                            const index = item[0].index;
+                            const value = chartData.datasets[datasetIndex].data[index];
+                            alert(`Value: ${value}`);
+                        }
+                    }
+                }
+            };
+            const myChart = new Chart(ctx, config);
+        });
+    </script>
 </body>
 </html>

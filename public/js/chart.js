@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const datasetIndex = item[0].datasetIndex;
                     const index = item[0].index;
                     const value = chartData1.datasets[datasetIndex].data[index];
-                    alert(`Value: ${value}`);
+                    alert(`myChart Value: ${value}`);
                 }
             }
         }
@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
             {
                 label: 'Pagu',
-                data: JSON.parse(document.getElementById('paguData').textContent),
+                data: JSON.parse(document.getElementById('P').textContent),
                 backgroundColor: '#ffcc00',
                 borderColor: '#ffcc00',
                 borderWidth: 1
             },
             {
                 label: 'Realisasi',
-                data: JSON.parse(document.getElementById('realisasiData').textContent),
+                data: JSON.parse(document.getElementById('R').textContent),
                 backgroundColor: '#3366cc',
                 borderColor: '#3366cc',
                 borderWidth: 1
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ]
     };
     const config2 = {
-        type: 'line',
+        type: 'bar',
         data: chartData2,
         options: {
             plugins: {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const datasetIndex = item[0].datasetIndex;
                     const index = item[0].index;
                     const value = chartData2.datasets[datasetIndex].data[index];
-                    alert(`Value: ${value}`);
+                    alert(`myChart2 Value: ${value}`);
                 }
             }
         }

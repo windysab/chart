@@ -29,8 +29,20 @@ class ChartController extends Controller
             'data' => [
                 'labels' => $labels,
                 'datasets' => [
-                    ['label' => 'Pagu', 'data' => $paguData],
-                    ['label' => 'Realisasi', 'data' => $realisasiData],
+                    [
+                        'label' => 'Pagu',
+                        'data' => $paguData,
+                        'backgroundColor' => '#4caf50', // Warna hijau solid
+                        'borderColor' => '#4caf50', // Warna hijau solid
+                        'borderWidth' => 1
+                    ],
+                    [
+                        'label' => 'Realisasi',
+                        'data' => $realisasiData,
+                        'backgroundColor' => '#f44336', // Warna merah solid
+                        'borderColor' => '#f44336', // Warna merah solid
+                        'borderWidth' => 1
+                    ]
                 ],
             ],
         ];
@@ -43,3 +55,4 @@ class ChartController extends Controller
         return view('chart', compact('chartUrl'));
     }
 }
+ 

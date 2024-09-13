@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ChartData;
 use QuickChart;
+use Illuminate\Support\Facades\DB;
 
 class ChartController extends Controller
 {
     public function showChart()
     {
         // Ambil data dari database
-        $chartData = ChartData::all();
+        $chartData = DB::table('chart_data')->get();
 
         // Siapkan data untuk chart
         $labels = $chartData->pluck('label')->toArray();

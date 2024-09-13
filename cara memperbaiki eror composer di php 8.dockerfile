@@ -34,6 +34,9 @@ mv composer.phar /c/laragon/bin/composer/composer.phar
 /c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan migrate
 /c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan tinker
 /c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan make:controller TestDBController
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan make:migration create_chart_data_table --create=chart_data
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan make:seeder ChartDataSeeder
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan db:seed --class=ChartDataSeeder
 
 php artisan config:cache
 php artisan route:cache
@@ -48,3 +51,7 @@ chmod -R 775 bootstrap/cache
 
 
 DB::table('stastistik')->get();
+
+
+npm install -D tailwindcss
+npx tailwindcss init

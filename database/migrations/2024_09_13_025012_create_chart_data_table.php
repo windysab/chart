@@ -13,6 +13,8 @@ class CreateChartDataTable extends Migration
             $table->string('label');
             $table->integer('pagu');
             $table->integer('realisasi');
+            $table->integer('P');
+            $table->integer('R');
             $table->timestamps();
         });
     }

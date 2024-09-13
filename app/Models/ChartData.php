@@ -9,5 +9,5 @@ class ChartData extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['label', 'pagu', 'realisasi'];
+    protected $fillable = ['label', 'pagu', 'realisasi', 'P', 'R'];
 }

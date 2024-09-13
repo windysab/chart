@@ -16,7 +16,9 @@ class ChartController extends Controller
         $labels = $chartData->pluck('label')->toArray();
         $paguData = $chartData->pluck('pagu')->toArray();
         $realisasiData = $chartData->pluck('realisasi')->toArray();
+        $P = $chartData->pluck('P')->toArray();
+        $R = $chartData->pluck('R')->toArray();
 
-        return view('chart', compact('labels', 'paguData', 'realisasiData'));
+        return view('chart', compact('chartData', 'labels', 'paguData', 'realisasiData', 'P', 'R'));
     }
 }

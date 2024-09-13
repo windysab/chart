@@ -3,32 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ChartData;
 use QuickChart;
 
 class ChartController extends Controller
 {
     public function showChart()
     {
+        // Ambil data dari database
+        $chartData = ChartData::all();
+
+        // Siapkan data untuk chart
+        $labels = $chartData->pluck('label')->toArray();
+        $paguData = $chartData->pluck('pagu')->toArray();
+        $realisasiData = $chartData->pluck('realisasi')->toArray();
+
         $qc = new QuickChart(array(
             'width' => 500,
             'height' => 300,
             'version' => '2.9.4',
         ));
 
-        $config = <<<EOD
-{
-    type: 'bar',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May'],
-        datasets: [
-            { label: 'Dogs', data: [50, 60, 70, 180, 190] },
-            { label: 'Cats', data: [100, 200, 300, 400, 500] },
-        ],
-    },
-}
-EOD;
+        $config = [
+            'type' => 'bar',
+            'data' => [
+                'labels' => $labels,
+                'datasets' => [
+                    ['label' => 'Pagu', 'data' => $paguData],
+                    ['label' => 'Realisasi', 'data' => $realisasiData],
+                ],
+            ],
+        ];
 
-        $qc->setConfig($config);
+        $qc->setConfig(json_encode($config));
 
         // Get the chart URL
         $chartUrl = $qc->getUrl();

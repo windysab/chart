@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChartController; // Add this line
+use App\Http\Controllers\TestDBController; // Add this line
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,6 +11,7 @@ Route::get('/', function () {
 
 
 
+Route::get('/test-db', [TestDBController::class, 'index']);
 
 
 Route::get('/chart', [ChartController::class, 'showChart']);

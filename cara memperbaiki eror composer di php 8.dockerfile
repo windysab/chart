@@ -31,14 +31,20 @@ mv composer.phar /c/laragon/bin/composer/composer.phar
 /c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan key:generate
 
 /c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan config:cache
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan migrate
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan tinker
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/www/chart/artisan make:controller TestDBController
 
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-
+php artisan migrate
 
 php artisan key:generate
 
 
 chmod -R 775 storage
 chmod -R 775 bootstrap/cache
+
+
+DB::table('stastistik')->get();

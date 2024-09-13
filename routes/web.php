@@ -10,7 +10,9 @@ Route::get('/', function () {
 
 
 
-Route::get('/line_chart', [ChartController::class, 'lineChart']);
+
+
+Route::get('/chart', [ChartController::class, 'showChart']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

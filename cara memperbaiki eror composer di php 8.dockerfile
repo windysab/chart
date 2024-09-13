@@ -60,3 +60,14 @@ npx tailwindcss init
 cd C:\laragon\www\chart
 npm install -D tailwindcss
 npx tailwindcss init
+
+chmod 644 public/css/chart.css
+chmod 644 public/js/chart.js
+
+
+
+mkdir -p public/js
+touch public/js/chart.js
+
+mkdir -p public/css
+touch public/css/chart.css

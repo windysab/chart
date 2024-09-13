@@ -40,6 +40,8 @@
         canvas {
             max-width: 100%;
             height: auto;
+            border: 2px solid #43288d; /* Menambahkan border pada elemen canvas */
+            border-radius: 10px; /* Menambahkan border-radius pada elemen canvas */
         }
     </style>
 </head>

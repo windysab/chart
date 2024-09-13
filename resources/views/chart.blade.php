@@ -31,7 +31,7 @@
             font-weight: bold;
             margin-bottom: 1.5rem;
             text-align: center;
-            color: #1f2937;
+            color: #076134;
         }
         .chart-wrapper {
             display: flex;
@@ -45,7 +45,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Chart</h1>
+        <h1 class="title">DIPA 04</h1>
         <div class="chart-wrapper">
             <canvas id="myChart"></canvas>
         </div>

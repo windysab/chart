@@ -8,15 +8,17 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
 .container {
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 2rem;
-    max-width: 600px;
+    max-width: 1200px;
     width: 100%;
     border: 4px solid #f8f8f4;
 }
+
 .title {
     font-size: 2rem;
     font-weight: bold;
@@ -24,85 +26,96 @@ body {
     text-align: center;
     color: #076134;
 }
+
 .chart-wrapper {
     display: flex;
     justify-content: center;
-}
-canvas {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #43288d; /* Menambahkan border pada elemen canvas */
-    border-radius: 10px; /* Menambahkan border-radius pada elemen canvas */
+    flex: 1;
 }
 
-/* Tambahkan gaya untuk tabel dengan class details */
+#myChart {
+    max-width: 100%;
+    width: 400px; /* Set a fixed width for the canvas */
+    height: 400px; /* Set a fixed height for the canvas */
+    border: 2px solid #43288d;
+    border-radius: 10px;
+}
+
+#myChart2 {
+    max-width: 100%;
+    width: 300px; /* Set a different fixed width for the canvas */
+    height: 300px; /* Set a fixed height for the canvas */
+    border: 2px solid #43288d;
+    border-radius: 10px;
+}
+
+/* Styles for the details table */
 .details {
     margin-top: 2rem;
+    flex: 1;
 }
+
 .details h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     text-align: center;
     color: #076134;
 }
+
 .details table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .details th, .details td {
     border: 1px solid #d1d5db;
     padding: 0.5rem;
-    text-align: center; /* Pastikan text-align center di sini */
+    text-align: center;
 }
+
 .details th {
     background-color: #00020501;
     font-weight: bold;
 }
 
-/* chart.css */
-.highlight {
-    background-color: rgb(29, 209, 59) !important;
-}
-
-/* Warna-warni untuk baris tabel di tbody */
-/* .row-color-0 {
-    background-color: #db5151;
-}
-.row-color-1 {
-    background-color: #99ffb6;
-}
-.row-color-2 {
-    background-color: #cd05b9;
-}
-.row-color-3 {
-    background-color: #cbc511;
-}
-.row-color-4 {
-    background-color: #11309e;
-} */
-
 table {
     width: 100%;
     border-collapse: collapse;
 }
+
 th, td {
-    /* text-align: center; Pastikan text-align center di sini */
     padding: 8px;
 }
+
 th {
     background-color: #f2f2f2;
 }
+
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Gaya khusus untuk setiap kolom */
+/* Specific styles for each column */
 .td1 {
-    text-align: center; /* Atur gaya sesuai kebutuhan */
+    text-align: center;
 }
+
 .td2 {
-    text-align: center; /* Atur gaya sesuai kebutuhan */
+    text-align: center;
 }
+
 .td3 {
-    text-align: right; /* Atur gaya sesuai kebutuhan */
+    text-align: right;
+}
+
+/* Flex container for side-by-side layout */
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.highlight {
+    background-color: rgb(29, 209, 59) !important;
 }

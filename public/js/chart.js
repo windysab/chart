@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'bar',
         data: chartData1,
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 datalabels: {
                     display: false
@@ -78,6 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'bar',
         data: chartData2,
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 datalabels: {
                     display: false

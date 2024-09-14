@@ -44,7 +44,7 @@ php artisan view:cache
 php artisan migrate
 php artisan migrate:refresh
 php artisan db:seed --class=ChartDataSeeder
-
+php artisan make:controller TestDBController
 php artisan key:generate
 
 

@@ -52,11 +52,16 @@ canvas {
 .details th, .details td {
     border: 1px solid #d1d5db;
     padding: 0.5rem;
-    text-align: left;
+    text-align: center; /* Pastikan text-align center di sini */
 }
 .details th {
     background-color: #00020501;
     font-weight: bold;
+}
+
+/* chart.css */
+.highlight {
+    background-color: rgb(29, 209, 59) !important;
 }
 
 /* Warna-warni untuk baris tabel di tbody */
@@ -75,3 +80,29 @@ canvas {
 .row-color-4 {
     background-color: #11309e;
 } */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    /* text-align: center; Pastikan text-align center di sini */
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Gaya khusus untuk setiap kolom */
+.td1 {
+    text-align: center; /* Atur gaya sesuai kebutuhan */
+}
+.td2 {
+    text-align: center; /* Atur gaya sesuai kebutuhan */
+}
+.td3 {
+    text-align: right; /* Atur gaya sesuai kebutuhan */
+}

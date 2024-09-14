@@ -35,7 +35,7 @@ body {
 
 #myChart {
     max-width: 100%;
-    width: 600px; /* Set a fixed width for the canvas */
+    width: 300px; /* Set a fixed width for the canvas */
     height: 300px; /* Set a fixed height for the canvas */
     border: 2px solid #43288d;
     border-radius: 10px;
@@ -43,7 +43,7 @@ body {
 
 #myChart2 {
     max-width: 100%;
-    width: 400px; /* Set a different fixed width for the canvas */
+    width: 100px; /* Set a different fixed width for the canvas */
     height: 300px; /* Set a fixed height for the canvas */
     border: 2px solid #43288d;
     border-radius: 10px;

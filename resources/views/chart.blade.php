@@ -57,10 +57,10 @@
         <div class="flex-container">
             <div class="chart-wrapper">
                 <canvas id="myChart2"></canvas>
+                <div id="chartLabels2" style="display: none;">{!! json_encode($labels) !!}</div>
+                <div id="P" style="display: none;">{!! json_encode($P) !!}</div>
+                <div id="R" style="display: none;">{!! json_encode($R) !!}</div>
             </div>
-            <div id="chartLabels2" style="display: none;">{!! json_encode($labels) !!}</div>
-            <div id="P" style="display: none;">{!! json_encode($P) !!}</div>
-            <div id="R" style="display: none;">{!! json_encode($R) !!}</div>
             <div class="details" id="details2">
                 <h2>Rincian Data Perkara</h2>
                 <table>

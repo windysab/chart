@@ -1,36 +1,24 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ChartController; // Add this line
-use App\Http\Controllers\TestDBController; // Add this line
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\TestDBController;
+use App\Http\Controllers\RealisasiController; // Add this line
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 
 Route::get('/', function () {
     return view('blank-page', ['type_menu' => 'dashboard']);
 });
 
-
-// use App\Http\Controllers\HomeController;
-
-// Route::get('/some-method', [HomeController::class, 'someMethod']);
-
-
-
 Route::get('/test-db', [TestDBController::class, 'index']);
 
-
 Route::get('/chart', [ChartController::class, 'showChart']);
+
+Route::get('/realisasi', [RealisasiController::class, 'index']); // Update this line
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

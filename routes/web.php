@@ -5,9 +5,20 @@ use App\Http\Controllers\ChartController; // Add this line
 use App\Http\Controllers\TestDBController; // Add this line
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('blank-page', ['type_menu' => 'dashboard']);
 });
+
+
+// use App\Http\Controllers\HomeController;
+
+// Route::get('/some-method', [HomeController::class, 'someMethod']);
 
 
 

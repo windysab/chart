@@ -23,7 +23,7 @@ class RealisasiController extends Controller
         $data = $decodedData['datasets'][0]['data']; // Ambil semua nilai dari data
 
         // Log the data to ensure it's correct
-        \Log::info('Data:', $data);
+        // Log::info('Data:', $data);
 
         $qc = new QuickChart(array(
             'width' => 800,

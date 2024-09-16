@@ -121,6 +121,10 @@
                 </div>
             </div>
         </div>
+
+        <div class="chart-container">
+            <img src="{{ $chartUrl }}" alt="Chart">
+        </div>
     </div>
 </body>
 

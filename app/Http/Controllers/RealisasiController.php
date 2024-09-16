@@ -24,21 +24,23 @@ class RealisasiController extends Controller
         $data = $decodedData['datasets'][0]['data'][0]; // Ambil nilai pertama dari data
 
         $qc = new QuickChart(array(
-            'width' => 300,
-            'height' => 50,
+            'width' => 800,
+            'height' => 400,
             'version' => '2.9.4',
         ));
 
-        $config = json_encode([
-            'type' => 'progressBar',
-            'data' => [
-                'datasets' => [
-                    [
-                        'data' => [$data],
-                    ],
-                ],
-            ],
-        ]);
+        $config = <<<EOD
+{
+  type: 'bar',
+  data: {
+    labels: ['Pos Bantuan Hukum', 'Prodeo', 'Sidang Keliling', 'Sidang Terpadu'],
+    datasets: [{
+      label: 'Realisasi',
+      data: [23333331, 357500000, 58200000, 8500000]
+    }]
+  }
+}
+EOD;
 
         $qc->setConfig($config);
 

@@ -107,3 +107,6 @@ mv composer.phar /c/laragon/bin/composer/composer.phar
 
 # Memperbarui dependensi lagi untuk memastikan semuanya terbarui
 /c/laragon/bin/php/php-8.2/php.exe /c/laragon/bin/composer/composer.phar updatephp
+
+
+cp .env.example .env

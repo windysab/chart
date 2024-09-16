@@ -68,14 +68,23 @@
             transition: width 0.3s ease;
         }
 
-
-
         .progress-value {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: #fff;
+            font-weight: bold;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 400px;
+            margin-top: 10px;
+        }
+
+        .progress-label {
             font-weight: bold;
         }
 
@@ -90,11 +99,15 @@
 <body>
     <div class="container">
         <h1>REALISASI ANGGARAN</h1>
-        {{-- <img src="{{ $chartUrl }}" alt="Chart"> --}}
+
         <div class="progress-wrapper">
             <div class="progress-container">
                 <div class="progress-bar realisasi" style="--progress: {{ $data }}%;">
                     <div class="progress-value">{{ $data }}%</div>
+                </div>
+                <div class="progress-labels">
+                    <div class="progress-label" style="color: #326df5;">DIPA 01</div>
+                    <div class="progress-label" style="color: #0e8235;">DIPA 04</div>
                 </div>
             </div>
         </div>

@@ -113,7 +113,7 @@
                     <div class="realisasi" style="width: {{ $data }}%;">
                         <div class="progress-value realisasi">{{ $data }}%</div>
                     </div>
-                    <div class="progress-value sisa">{{ 100 - $data }}%</div>
+                    <div class="progress-value sisa" style="left: calc({{ $data }}% + 10px);">{{ 100 - $data }}%</div>
                 </div>
                 <div class="progress-labels">
                     <div class="progress-label" style="color: #326df5;">DIPA 01</div>

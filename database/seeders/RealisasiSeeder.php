@@ -20,7 +20,7 @@ class RealisasiSeeder extends Seeder
                 'data' => json_encode([
                     'datasets' => [
                         [
-                            'data' => [75]
+                            'data' => [88,2]
                         ]
                     ]
                 ]), // Corrected value to JSON format

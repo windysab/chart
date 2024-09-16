@@ -14,7 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 130vh;
             color: #333;
         }
 
@@ -24,11 +24,19 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ccc;
         }
 
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
+        }
+
+        .box {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
         }
 
         .progress-wrapper {
@@ -100,13 +108,48 @@
             height: auto;
             border-radius: 8px;
         }
+
+        .values {
+            margin-top: 20px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .value-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 5px 20px;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .values .pagu {
+            color: red;
+        }
+
+        .values .realisasi {
+            color: blue;
+        }
+
+        .values .sisa {
+            color: green;
+        }
+
+        .percentage {
+            font-size: 14px;
+            color: #666;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <div class="container">
         <h1>REALISASI ANGGARAN</h1>
-
         <div class="progress-wrapper">
             <div class="progress-container">
                 <div class="progress-bar">
@@ -122,10 +165,63 @@
             </div>
         </div>
 
-        <div class="chart-container">
-            <img src="{{ $chartUrl }}" alt="Chart">
+        <div class="box">
+            <h2>DIPA 01</h2>
+
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <div class="values">
+                <div class="value-item">
+                    <span class="pagu">Pagu: Rp. {{ number_format($pagu, 0, ',', '.') }}</span>
+                    <span class="percentage">({{ $persentasePagu }}%)</span>
+                </div>
+                <div class="value-item">
+                    <span class="realisasi">Realisasi: Rp. {{ number_format($realisasi, 0, ',', '.') }}</span>
+                    <span class="percentage">({{ $persentaseRealisasi }}%)</span>
+                </div>
+                <div class="value-item">
+                    <span class="sisa">Sisa Pagu: Rp. {{ number_format($sisa, 0, ',', '.') }}</span>
+                    <span class="percentage">({{ $persentaseSisa }}%)</span>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pagu', 'Realisasi', 'Sisa Pagu'],
+                datasets: [{
+                    label: 'Manajemen dan Operasional',
+                    data: [{{ $pagu }}, {{ $realisasi }}, {{ $sisa }}],
+                    backgroundColor: ['#ff0000', '#326df5', '#00ff00'],
+                }]
+            },
+            options: {
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            const value = data.datasets[0].data[tooltipItem.index];
+                            const percentage = tooltipItem.index === 0 ? {{ $persentasePagu }} :
+                                (tooltipItem.index === 1 ? {{ $persentaseRealisasi }} : {{ $persentaseSisa }});
+                            return `Rp. ${value.toLocaleString()} (${percentage}%)`;
+                        }
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

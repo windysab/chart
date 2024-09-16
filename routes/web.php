@@ -16,6 +16,8 @@ Route::get('/chart', [ChartController::class, 'showChart']);
 
 Route::get('/realisasi', [RealisasiController::class, 'index']); // Update this line
 
+Route::get('/realisasi/data', [RealisasiController::class, 'getData']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

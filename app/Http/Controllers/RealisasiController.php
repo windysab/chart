@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -21,7 +20,10 @@ class RealisasiController extends Controller
             return response()->json(['error' => 'Data tidak valid'], 400);
         }
 
-        $data = $decodedData['datasets'][0]['data'][0]; // Ambil nilai pertama dari data
+        $data = $decodedData['datasets'][0]['data']; // Ambil semua nilai dari data
+
+        // Log the data to ensure it's correct
+        \Log::info('Data:', $data);
 
         $qc = new QuickChart(array(
             'width' => 800,
@@ -29,29 +31,34 @@ class RealisasiController extends Controller
             'version' => '2.9.4',
         ));
 
-        $config = <<<EOD
-{
-  type: 'bar',
-  data: {
-    labels: ['Pos Bantuan Hukum', 'Prodeo', 'Sidang Keliling', 'Sidang Terpadu'],
-    datasets: [{
-      label: 'Realisasi',
-      data: [23333331, 357500000, 58200000, 8500000]
-    }]
-  }
-}
-EOD;
+        // Gunakan data dari database dalam konfigurasi chart
+        $config = [
+            'type' => 'bar',
+            'data' => [
+                'labels' => ['Pagu', 'Realisasi'],
+                'datasets' => [
+                    [
+                        'label' => 'Realisasi',
+                        'data' => [$realisasiData->pagu, $realisasiData->realisasi],
+                        'backgroundColor' => ['#ff0000', '#326df5'], // Red for Pagu, Blue for Realisasi
+                    ]
+                ]
+            ],
+            'options' => [
+                'scales' => [
+                    'yAxes' => [[
+                        'ticks' => [
+                            'beginAtZero' => true
+                        ]
+                    ]]
+                ]
+            ]
+        ];
 
-        $qc->setConfig($config);
+        $qc->setConfig(json_encode($config));
 
         // Get the chart URL
         $chartUrl = $qc->getUrl();
-
-        // Get the image binary data
-        $image = $qc->toBinary();
-
-        // Save the image to a file
-        $qc->toFile(public_path('chart.png'));
 
         return view('realisasi', compact('chartUrl', 'data'));
     }

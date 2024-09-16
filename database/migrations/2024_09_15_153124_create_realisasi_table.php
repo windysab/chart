@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->string('data');
+            $table->string('pagu');
+            $table->string('realisasi');
+            $table->string('P');
+            $table->string('R');
             $table->timestamps();
         });
     }

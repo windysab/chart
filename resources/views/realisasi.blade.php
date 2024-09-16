@@ -62,7 +62,7 @@
 
         .progress-bar .realisasi {
             background-color: #326df5;
-            width: var(--progress);
+            width: {{ $data[0] }}%;
             transition: width 0.3s ease;
             position: relative;
         }
@@ -110,10 +110,10 @@
         <div class="progress-wrapper">
             <div class="progress-container">
                 <div class="progress-bar">
-                    <div class="realisasi" style="width: {{ $data }}%;">
-                        <div class="progress-value realisasi">{{ $data }}%</div>
+                    <div class="realisasi" style="width: {{ $data[0] }}%;">
+                        <div class="progress-value realisasi">{{ $data[0] }}%</div>
                     </div>
-                    <div class="progress-value sisa" style="left: calc({{ $data }}% + 10px);">{{ 100 - $data }}%</div>
+                    <div class="progress-value sisa" style="left: calc({{ $data[0] }}% + 10px);">{{ 100 - $data[0] }}%</div>
                 </div>
                 <div class="progress-labels">
                     <div class="progress-label" style="color: #326df5;">DIPA 01</div>

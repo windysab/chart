@@ -24,6 +24,10 @@ class RealisasiSeeder extends Seeder
                         ]
                     ]
                 ]), // Corrected value to JSON format
+                'pagu' => 100000000,
+                'realisasi' => 88000000,
+                'P' => 88,
+                'R' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

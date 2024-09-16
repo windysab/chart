@@ -85,3 +85,25 @@ php artisan config:clear
 php artisan cache:clear
 php artisan route:clear
 php artisan view:clear
+
+
+# Menghapus file setup composer jika ada
+/c/laragon/bin/php/php-8.2/php.exe -r "unlink('composer-setup.php');"
+
+# Mengunduh dan menginstal Composer menggunakan PHP 8.2
+/c/laragon/bin/php/php-8.2/php.exe -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+/c/laragon/bin/php/php-8.2/php.exe composer-setup.php
+/c/laragon/bin/php/php-8.2/php.exe -r "unlink('composer-setup.php');"
+
+# Membuat direktori untuk Composer dan memindahkan file Composer
+mkdir -p /c/laragon/bin/composer
+mv composer.phar /c/laragon/bin/composer/composer.phar
+
+# Memperbarui dependensi menggunakan Composer dan PHP 8.2
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/bin/composer/composer.phar update
+
+# Memverifikasi versi PHP yang digunakan
+/c/laragon/bin/php/php-8.2/php.exe -v
+
+# Memperbarui dependensi lagi untuk memastikan semuanya terbarui
+/c/laragon/bin/php/php-8.2/php.exe /c/laragon/bin/composer/composer.phar updatephp

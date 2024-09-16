@@ -7,7 +7,7 @@
     <title>Chart</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
@@ -22,21 +22,35 @@
             text-align: center;
             background: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border: 2px solid #ccc;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ddd;
         }
 
-        h1 {
-            font-size: 24px;
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
         }
 
+        .header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #4a90e2;
+        }
+
         .box {
-            border: 2px solid #ccc;
-            border-radius: 8px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
+            background-color: #f9f9f9;
         }
 
         .progress-wrapper {
@@ -143,13 +157,22 @@
             font-size: 14px;
             color: #666;
         }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h1>REALISASI ANGGARAN</h1>
+        <div class="header">
+            <img src="https://img.icons8.com/ios-filled/50/000000/money.png" alt="Logo">
+            <h1>REALISASI ANGGARAN</h1>
+        </div>
         <div class="progress-wrapper">
             <div class="progress-container">
                 <div class="progress-bar">
@@ -174,14 +197,17 @@
 
             <div class="values">
                 <div class="value-item">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/money.png" class="icon" alt="Pagu Icon">
                     <span class="pagu">Pagu: Rp. {{ number_format($pagu, 0, ',', '.') }}</span>
                     <span class="percentage">({{ $persentasePagu }}%)</span>
                 </div>
                 <div class="value-item">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/money-bag.png" class="icon" alt="Realisasi Icon">
                     <span class="realisasi">Realisasi: Rp. {{ number_format($realisasi, 0, ',', '.') }}</span>
                     <span class="percentage">({{ $persentaseRealisasi }}%)</span>
                 </div>
                 <div class="value-item">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/safe.png" class="icon" alt="Sisa Icon">
                     <span class="sisa">Sisa Pagu: Rp. {{ number_format($sisa, 0, ',', '.') }}</span>
                     <span class="percentage">({{ $persentaseSisa }}%)</span>
                 </div>
@@ -202,7 +228,23 @@
                 }]
             },
             options: {
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                },
                 tooltips: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    titleFontFamily: 'Roboto',
+                    titleFontSize: 16,
+                    titleFontStyle: 'bold',
+                    titleFontColor: '#fff',
+                    bodyFontFamily: 'Roboto',
+                    bodyFontSize: 14,
+                    bodyFontColor: '#fff',
+                    bodySpacing: 10,
+                    xPadding: 10,
+                    yPadding: 10,
+                    cornerRadius: 4,
                     callbacks: {
                         label: function(tooltipItem, data) {
                             const value = data.datasets[0].data[tooltipItem.index];

@@ -15,6 +15,7 @@
         <div class="header">
             <img src="https://img.icons8.com/ios-filled/50/000000/money.png" alt="Logo">
             <h1>REALISASI ANGGARAN PA AMUNTAI</h1>
+            <h2>PENGADILAN AGAMA AMUNTAI</h2>
         </div>
         <div class="progress-wrapper">
             <div class="progress-container">

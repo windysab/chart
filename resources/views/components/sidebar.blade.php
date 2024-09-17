@@ -14,12 +14,13 @@
                     <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
                         <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
                     </li>
-                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
+                    <li class="{{ Request::is('forms-validation') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('forms-validation') }}">Validation</a>
                     </li>
                 </ul>
             </li>
-            
+
             <li class="{{ Request::is('credits') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('credits') }}"><i class="fas fa-pencil-ruler">
                     </i> <span>Credits</span>

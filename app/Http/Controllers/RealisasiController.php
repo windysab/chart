@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Realisasi;
-use QuickChart;
 
 class RealisasiController extends Controller
 {
@@ -78,5 +76,37 @@ class RealisasiController extends Controller
 
         // Kirim data
         return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'type' => 'required|string',
+            'data' => 'required|string',
+            'pagu' => 'required|string',
+            'realisasi' => 'required|string',
+            'P' => 'required|string',
+            'R' => 'required|string',
+        ]);
+
+        Realisasi::create($request->all());
+
+        return redirect()->route('realisasi.index')->with('success', 'Data created successfully.');
+    }
+
+    public function update(Request $request, Realisasi $realisasi)
+    {
+        $request->validate([
+            'type' => 'required|string',
+            'data' => 'required|string',
+            'pagu' => 'required|string',
+            'realisasi' => 'required|string',
+            'P' => 'required|string',
+            'R' => 'required|string',
+        ]);
+
+        $realisasi->update($request->all());
+
+        return redirect()->route('realisasi.index')->with('success', 'Data updated successfully.');
     }
 }

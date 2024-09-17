@@ -18,6 +18,18 @@ Route::get('/realisasi', [RealisasiController::class, 'index']); // Update this 
 
 Route::get('/realisasi/data', [RealisasiController::class, 'getData']);
 
+Route::get('/forms-validation', function () {
+    return view('pages.forms-validation', ['type_menu' => 'forms']);
+});
+
+
+
+Route::resource('realisasi', RealisasiController::class);
+
+
+Route::put('/realisasi/{id}', [RealisasiController::class, 'update'])->name('realisasi.update');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

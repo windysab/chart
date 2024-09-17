@@ -1,13 +1,14 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f9;
+    background: linear-gradient(to right, #3b82f6, #9333ea);
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 150vh;
+    height: 160vh;
     color: #333;
 }
 

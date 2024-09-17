@@ -66,6 +66,8 @@
             transition: transform 0.3s ease;
             margin: 0 10px;
             position: relative;
+            width: 100%;
+            max-width: 600px;
         }
 
         .progress-container:hover {
@@ -73,7 +75,7 @@
         }
 
         .progress-bar {
-            width: 400px;
+            width: 150%;
             height: 40px;
             background-color: #0e8235;
             border-radius: 10px;
@@ -109,7 +111,7 @@
         .progress-labels {
             display: flex;
             justify-content: space-between;
-            width: 400px;
+            width: 100%;
             margin-top: 10px;
         }
 
@@ -213,6 +215,32 @@
                 </div>
             </div>
         </div>
+
+        <div class="box">
+            <h2>DIPA 04</h2>
+
+            <div class="chart-container">
+                <canvas id="myChart2"></canvas>
+            </div>
+
+            <div class="values">
+                <div class="value-item">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/money.png" class="icon" alt="Pagu Icon">
+                    <span class="pagu">Pagu: Rp. {{ number_format($pagu, 0, ',', '.') }}</span>
+                    <span class="percentage">({{ $persentasePagu }}%)</span>
+                </div>
+                <div class="value-item">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/money-bag.png" class="icon" alt="Realisasi Icon">
+                    <span class="realisasi">Realisasi: Rp. {{ number_format($realisasi, 0, ',', '.') }}</span>
+                    <span class="percentage">({{ $persentaseRealisasi }}%)</span>
+                </div>
+                <div class="value-item">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/safe.png" class="icon" alt="Sisa Icon">
+                    <span class="sisa">Sisa Pagu: Rp. {{ number_format($sisa, 0, ',', '.') }}</span>
+                    <span class="percentage">({{ $persentaseSisa }}%)</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -225,6 +253,57 @@
                     label: 'Manajemen dan Operasional',
                     data: [{{ $pagu }}, {{ $realisasi }}, {{ $sisa }}],
                     backgroundColor: ['#ff0000', '#326df5', '#00ff00'],
+                }]
+            },
+            options: {
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                },
+                tooltips: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    titleFontFamily: 'Roboto',
+                    titleFontSize: 16,
+                    titleFontStyle: 'bold',
+                    titleFontColor: '#fff',
+                    bodyFontFamily: 'Roboto',
+                    bodyFontSize: 14,
+                    bodyFontColor: '#fff',
+                    bodySpacing: 10,
+                    xPadding: 10,
+                    yPadding: 10,
+                    cornerRadius: 4,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            const value = data.datasets[0].data[tooltipItem.index];
+                            const percentage = tooltipItem.index === 0 ? {{ $persentasePagu }} :
+                                (tooltipItem.index === 1 ? {{ $persentaseRealisasi }} : {{ $persentaseSisa }});
+                            return `Rp. ${value.toLocaleString()} (${percentage}%)`;
+                        }
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Pagu', 'Realisasi', 'Sisa Pagu'],
+                datasets: [{
+                    label: 'Manajemen dan Operasional',
+                    data: [{{ $pagu }}, {{ $realisasi }}, {{ $sisa }}],
+                    backgroundColor: 'rgba(50, 109, 245, 0.2)',
+                    borderColor: '#326df5',
+                    borderWidth: 2,
+                    fill: true
                 }]
             },
             options: {

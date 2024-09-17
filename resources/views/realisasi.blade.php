@@ -31,7 +31,7 @@
         </div>
 
         <div class="box">
-            <h2>DIPA 01</h2>
+            <h1 style="color: blue;">DIPA 01</h1>
 
             <div class="chart-container">
                 <canvas id="myChart"></canvas>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="box">
-            <h2>DIPA 04</h2>
+            <h1 style="color: green;">DIPA 04</h1>
 
             <div class="chart-container">
                 <canvas id="myChart2"></canvas>

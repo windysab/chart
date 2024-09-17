@@ -111,3 +111,7 @@ mv composer.phar /c/laragon/bin/composer/composer.phar
 
 
 cp .env.example .env
+
+
+git add .gitignore
+git commit -pagu "Update .gitignore to include vendor and node_modules"

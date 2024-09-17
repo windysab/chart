@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 170vh;
+    height: 150vh;
     color: #333;
 }
 
@@ -18,6 +18,8 @@ body {
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border: 2px solid #ddd;
+    width: 90%;
+    max-width: 800px;
 }
 
 .header {
@@ -123,6 +125,7 @@ img {
     font-size: 16px; /* Kurangi ukuran font */
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .value-item {
@@ -171,4 +174,68 @@ img {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Kurangi shadow */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .header img {
+        width: 40px;
+        height: 40px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .progress-bar {
+        height: 30px;
+    }
+
+    .progress-value {
+        font-size: 12px;
+    }
+
+    .values {
+        font-size: 14px;
+    }
+
+    .footer {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .header img {
+        width: 30px;
+        height: 30px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .progress-bar {
+        height: 25px;
+    }
+
+    .progress-value {
+        font-size: 10px;
+    }
+
+    .values {
+        font-size: 12px;
+    }
+
+    .footer {
+        font-size: 10px;
+    }
 }

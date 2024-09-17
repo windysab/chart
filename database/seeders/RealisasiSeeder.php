@@ -20,14 +20,14 @@ class RealisasiSeeder extends Seeder
                 'data' => json_encode([
                     'datasets' => [
                         [
-                            'data' => [88,2]
+                            'data' => [96,6]
                         ]
                     ]
                 ]), // Corrected value to JSON format
                 'pagu' => 4131945000,
                 'realisasi' => 2641840805,
-                'P' => 88,
-                'R' => 2,
+                'P' => 142450000,
+                'R' => 125783331,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

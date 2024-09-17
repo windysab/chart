@@ -33,10 +33,19 @@ class RealisasiController extends Controller
         $persentaseRealisasi = number_format(($realisasi / $pagu) * 100, 2);
         $persentaseSisa = number_format(($sisa / $pagu) * 100, 2);
 
-        // Kirim pagu, realisasi, sisa, dan persentase ke view
-        return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa'));
-    }
+        // Ambil nilai P dan R
+        $P = $realisasiData->P;
+        $R = $realisasiData->R;
+        $S = $P - $R;
 
+        // Hitung persentase P dan R menjadi dua desimal
+        $persentaseP = number_format(100, 2); // P selalu 100%
+        $persentaseR = number_format(($R / $P) * 100, 2);
+        $persentaseS = number_format(($S / $P) * 100, 2);
+
+        // Kirim pagu, realisasi, sisa, persentase, P, dan R ke view
+        return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R', 'S', 'persentaseP', 'persentaseR', 'persentaseS'));
+    }
 
     public function getData()
     {
@@ -63,7 +72,11 @@ class RealisasiController extends Controller
         $persentaseRealisasi = number_format(($realisasi / $pagu) * 100, 2);
         $persentaseSisa = number_format(($sisa / $pagu) * 100, 2);
 
+        // Ambil nilai P dan R
+        $P = $realisasiData->P;
+        $R = $realisasiData->R;
+
         // Kirim data
-        return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa'));
+        return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R'));
     }
 }

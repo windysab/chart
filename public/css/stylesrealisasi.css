@@ -1,0 +1,166 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 170vh;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ddd;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.header img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+h1 {
+    font-size: 28px;
+    color: #4a90e2;
+}
+
+.box {
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.progress-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+    margin: 0 10px;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.progress-container:hover {
+    transform: scale(1.05);
+}
+
+.progress-bar {
+    width: 140%;
+    height: 40px;
+    background-color: #0e8235;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+}
+
+.progress-bar .realisasi {
+    background-color: #326df5;
+    width: 0; /* Initial width, will be set by inline style */
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-value {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-weight: bold;
+}
+
+.progress-value.realisasi {
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.progress-value.sisa {
+    right: 10px;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.progress-label {
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.values {
+    margin-top: 20px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.value-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 20px;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.values .pagu {
+    color: red;
+}
+
+.values .realisasi {
+    color: blue;
+}
+
+.values .sisa {
+    color: green;
+}
+
+.percentage {
+    font-size: 14px;
+    color: #666;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}

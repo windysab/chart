@@ -17,13 +17,7 @@ class RealisasiSeeder extends Seeder
         DB::table('realisasi')->insert([
             [
                 'type' => 'progressBar',
-                'data' => json_encode([
-                    'datasets' => [
-                        [
-                            'data' => [96,6]
-                        ]
-                    ]
-                ]), // Corrected value to JSON format
+                'data' => 96.6, // Corrected value to JSON format
                 'pagu' => 4131945000,
                 'realisasi' => 2641840805,
                 'P' => 142450000,

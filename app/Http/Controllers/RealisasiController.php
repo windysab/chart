@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,18 +9,14 @@ class RealisasiController extends Controller
 {
     public function index()
     {
-        // Ambil data dari tabel realisasi
-        $realisasiData = Realisasi::first();
+        // Ambil data dari tabel realisasi baru
+        // $realisasiData = Realisasi::first();
 
-        // Pastikan data diambil dalam format yang benar
-        $decodedData = json_decode($realisasiData->data, true);
+        $realisasiData = Realisasi::latest()->first();
 
-        // Tambahkan pengecekan apakah json_decode berhasil
-        if (json_last_error() !== JSON_ERROR_NONE || !isset($decodedData['datasets'][0]['data'])) {
-            return response()->json(['error' => 'Data tidak valid'], 400);
-        }
 
-        $data = $decodedData['datasets'][0]['data']; // Ambil semua nilai dari data
+
+        $data = $realisasiData->data; // Ambil nilai data langsung
 
         // Hitung persentase sisa dari pagu setelah dikurangi realisasi
         $pagu = $realisasiData->pagu;
@@ -51,14 +48,11 @@ class RealisasiController extends Controller
         $realisasiData = Realisasi::first();
 
         // Pastikan data diambil dalam format yang benar
-        $decodedData = json_decode($realisasiData->data, true);
-
-        // Tambahkan pengecekan apakah json_decode berhasil
-        if (json_last_error() !== JSON_ERROR_NONE || !isset($decodedData['datasets'][0]['data'])) {
+        if (!isset($realisasiData->data)) {
             return response()->json(['error' => 'Data tidak valid'], 400);
         }
 
-        $data = $decodedData['datasets'][0]['data']; // Ambil semua nilai dari data
+        $data = $realisasiData->data; // Ambil nilai data langsung
 
         // Hitung persentase sisa dari pagu setelah dikurangi realisasi
         $pagu = $realisasiData->pagu;
@@ -82,11 +76,11 @@ class RealisasiController extends Controller
     {
         $request->validate([
             'type' => 'required|string',
-            'data' => 'required|string',
-            'pagu' => 'required|string',
-            'realisasi' => 'required|string',
-            'P' => 'required|string',
-            'R' => 'required|string',
+            'data' => 'required|numeric',
+            'pagu' => 'required|numeric',
+            'realisasi' => 'required|numeric',
+            'P' => 'required|numeric',
+            'R' => 'required|numeric',
         ]);
 
         Realisasi::create($request->all());
@@ -98,11 +92,11 @@ class RealisasiController extends Controller
     {
         $request->validate([
             'type' => 'required|string',
-            'data' => 'required|string',
-            'pagu' => 'required|string',
-            'realisasi' => 'required|string',
-            'P' => 'required|string',
-            'R' => 'required|string',
+            'data' => 'required|numeric',
+            'pagu' => 'required|numeric',
+            'realisasi' => 'required|numeric',
+            'P' => 'required|numeric',
+            'R' => 'required|numeric',
         ]);
 
         $realisasi->update($request->all());

@@ -8,18 +8,15 @@ class RealisasiController extends Controller
 {
     public function index()
     {
-        // Ambil data dari tabel realisasi
-        $realisasiData = Realisasi::first();
+        // Ambil data terbaru dari tabel realisasi
+        $realisasiData = Realisasi::latest()->first();
 
         // Pastikan data diambil dalam format yang benar
-        $decodedData = json_decode($realisasiData->data, true);
-
-        // Tambahkan pengecekan apakah json_decode berhasil
-        if (json_last_error() !== JSON_ERROR_NONE || !isset($decodedData['datasets'][0]['data'])) {
+        if (!isset($realisasiData->data)) {
             return response()->json(['error' => 'Data tidak valid'], 400);
         }
 
-        $data = $decodedData['datasets'][0]['data']; // Ambil semua nilai dari data
+        $data = $realisasiData->data; // Ambil nilai data langsung
 
         // Hitung persentase sisa dari pagu setelah dikurangi realisasi
         $pagu = $realisasiData->pagu;
@@ -45,66 +42,45 @@ class RealisasiController extends Controller
         return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R', 'S', 'persentaseP', 'persentaseR', 'persentaseS'));
     }
 
-    public function getData()
-    {
-        // Ambil data dari tabel realisasi
-        $realisasiData = Realisasi::first();
-
-        // Pastikan data diambil dalam format yang benar
-        $decodedData = json_decode($realisasiData->data, true);
-
-        // Tambahkan pengecekan apakah json_decode berhasil
-        if (json_last_error() !== JSON_ERROR_NONE || !isset($decodedData['datasets'][0]['data'])) {
-            return response()->json(['error' => 'Data tidak valid'], 400);
-        }
-
-        $data = $decodedData['datasets'][0]['data']; // Ambil semua nilai dari data
-
-        // Hitung persentase sisa dari pagu setelah dikurangi realisasi
-        $pagu = $realisasiData->pagu;
-        $realisasi = $realisasiData->realisasi;
-        $sisa = $pagu - $realisasi;
-
-        // Hitung persentase dan format menjadi dua desimal
-        $persentasePagu = number_format(100, 2); // Pagu selalu 100%
-        $persentaseRealisasi = number_format(($realisasi / $pagu) * 100, 2);
-        $persentaseSisa = number_format(($sisa / $pagu) * 100, 2);
-
-        // Ambil nilai P dan R
-        $P = $realisasiData->P;
-        $R = $realisasiData->R;
-
-        // Kirim data
-        return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([
             'type' => 'required|string',
-            'data' => 'required|string',
-            'pagu' => 'required|string',
-            'realisasi' => 'required|string',
-            'P' => 'required|string',
-            'R' => 'required|string',
+            'data' => 'required|numeric',
+            'pagu' => 'required|numeric',
+            'realisasi' => 'required|numeric',
+            'P' => 'required|numeric',
+            'R' => 'required|numeric',
         ]);
 
+        // Simpan data baru ke dalam tabel realisasi
         Realisasi::create($request->all());
 
         return redirect()->route('realisasi.index')->with('success', 'Data created successfully.');
     }
 
-    public function update(Request $request, Realisasi $realisasi)
+    public function edit($id)
+    {
+        // Ambil data berdasarkan ID
+        $realisasi = Realisasi::findOrFail($id);
+
+        // Kirim data ke view
+        return view('pages.forms-validation', compact('realisasi'));
+    }
+
+    public function update(Request $request, $id)
     {
         $request->validate([
             'type' => 'required|string',
-            'data' => 'required|string',
-            'pagu' => 'required|string',
-            'realisasi' => 'required|string',
-            'P' => 'required|string',
-            'R' => 'required|string',
+            'data' => 'required|numeric',
+            'pagu' => 'required|numeric',
+            'realisasi' => 'required|numeric',
+            'P' => 'required|numeric',
+            'R' => 'required|numeric',
         ]);
 
+        // Update data berdasarkan ID
+        $realisasi = Realisasi::findOrFail($id);
         $realisasi->update($request->all());
 
         return redirect()->route('realisasi.index')->with('success', 'Data updated successfully.');

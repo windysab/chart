@@ -22,6 +22,62 @@
             <div class="d-flex">
                 <div class="col-6">
                     <div class="card">
+                        @if(isset($realisasi))
+                        <form action="{{ route('realisasi.update', $realisasi->id) }}" method="POST" class="needs-validation" novalidate="">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-header">
+                                <h4>Edit Realisasi</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <input type="text" name="type" class="form-control" value="{{ $realisasi->type }}" required>
+                                    <div class="invalid-feedback">
+                                        What's the type?
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Data</label>
+                                    <input type="text" name="data" class="form-control" value="{{ $realisasi->data }}" required>
+                                    <div class="invalid-feedback">
+                                        What's the data?
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pagu</label>
+                                    <input type="text" name="pagu" class="form-control" value="{{ $realisasi->pagu }}" required>
+                                    <div class="invalid-feedback">
+                                        What's the pagu?
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Realisasi</label>
+                                    <input type="text" name="realisasi" class="form-control" value="{{ $realisasi->realisasi }}" required>
+                                    <div class="invalid-feedback">
+                                        What's the realisasi?
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>P</label>
+                                    <input type="text" name="P" class="form-control" value="{{ $realisasi->P }}" required>
+                                    <div class="invalid-feedback">
+                                        What's the P?
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>R</label>
+                                    <input type="text" name="R" class="form-control" value="{{ $realisasi->R }}" required>
+                                    <div class="invalid-feedback">
+                                        What's the R?
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                        @else
                         <form action="{{ route('realisasi.store') }}" method="POST">
                             @csrf
                             <div class="card-header">
@@ -57,64 +113,7 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card">
-                        <form action="{{ route('realisasi.update', $realisasi->id ?? '') }}" method="POST" class="needs-validation" novalidate="">
-                            @csrf
-                            @method('PUT')
-                            <div class="card-header">
-                                <h4>Edit Realisasi</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>Type</label>
-                                    <input type="text" name="type" class="form-control" value="{{ $realisasi->type ?? '' }}" required>
-                                    <div class="invalid-feedback">
-                                        What's the type?
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Data</label>
-                                    <input type="text" name="data" class="form-control" value="{{ $realisasi->data ?? '' }}" required>
-                                    <div class="invalid-feedback">
-                                        What's the data?
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Pagu</label>
-                                    <input type="text" name="pagu" class="form-control" value="{{ $realisasi->pagu ?? '' }}" required>
-                                    <div class="invalid-feedback">
-                                        What's the pagu?
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Realisasi</label>
-                                    <input type="text" name="realisasi" class="form-control" value="{{ $realisasi->realisasi ?? '' }}" required>
-                                    <div class="invalid-feedback">
-                                        What's the realisasi?
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>P</label>
-                                    <input type="text" name="P" class="form-control" value="{{ $realisasi->P ?? '' }}" required>
-                                    <div class="invalid-feedback">
-                                        What's the P?
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>R</label>
-                                    <input type="text" name="R" class="form-control" value="{{ $realisasi->R ?? '' }}" required>
-                                    <div class="invalid-feedback">
-                                        What's the R?
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -16,6 +16,7 @@ Route::get('/chart', [ChartController::class, 'showChart']);
 
 Route::get('/realisasi', [RealisasiController::class, 'index']);
 
+
 Route::get('/realisasi/data', [RealisasiController::class, 'getData']);
 
 Route::get('/forms-validation', function () {
@@ -24,6 +25,7 @@ Route::get('/forms-validation', function () {
 
 // Resource route for RealisasiController
 Route::resource('realisasi', RealisasiController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

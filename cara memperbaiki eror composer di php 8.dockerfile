@@ -115,3 +115,48 @@ cp .env.example .env
 
 git add .gitignore
 git commit -pagu "Update .gitignore to include vendor and node_modules"
+
+
+Untuk menyamakan data antara dua cabang (branch) di Git, Anda dapat menggunakan perintah `git merge` atau `git rebase`. Berikut adalah langkah-langkahnya:
+
+    1. **Pastikan Anda berada di branch `a`:**
+       ```sh
+       git checkout a
+       ```
+
+    2. **Tarik perubahan terbaru dari remote repository:**
+       ```sh
+       git pull origin a
+       ```
+
+    3. **Gabungkan branch `b` ke branch `a`:**
+       ```sh
+       git merge b
+       ```
+
+       Atau jika Anda ingin menggunakan rebase:
+       ```sh
+       git rebase b
+       ```
+
+    4. **Selesaikan konflik jika ada, kemudian tambahkan dan komit perubahan:**
+       ```sh
+       git add .
+       git commit -m "Resolve merge conflicts"
+       ```
+
+    5. **Dorong perubahan ke remote repository:**
+       ```sh
+       git push origin a
+       ```
+
+    Berikut adalah langkah-langkah dalam bentuk pseudocode:
+
+    1. Checkout ke branch `a`.
+    2. Tarik perubahan terbaru dari remote repository.
+    3. Gabungkan branch `b` ke branch `a` atau lakukan rebase.
+    4. Selesaikan konflik jika ada.
+    5. Tambahkan dan komit perubahan.
+    6. Dorong perubahan ke remote repository.
+
+    Jika Anda memerlukan bantuan lebih lanjut atau ada konflik yang sulit diselesaikan, beri tahu saya!

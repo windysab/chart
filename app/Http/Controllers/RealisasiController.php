@@ -9,12 +9,13 @@ class RealisasiController extends Controller
 {
     public function index()
     {
-        // Ambil data dari tabel realisasi baru
-        // $realisasiData = Realisasi::first();
-
+        // Ambil data terbaru dari tabel realisasi
         $realisasiData = Realisasi::latest()->first();
 
-
+        // Pastikan data diambil dalam format yang benar
+        if (!isset($realisasiData->data)) {
+            return response()->json(['error' => 'Data tidak valid'], 400);
+        }
 
         $data = $realisasiData->data; // Ambil nilai data langsung
 
@@ -42,34 +43,9 @@ class RealisasiController extends Controller
         return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R', 'S', 'persentaseP', 'persentaseR', 'persentaseS'));
     }
 
-    public function getData()
+    public function create()
     {
-        // Ambil data dari tabel realisasi
-        $realisasiData = Realisasi::first();
-
-        // Pastikan data diambil dalam format yang benar
-        if (!isset($realisasiData->data)) {
-            return response()->json(['error' => 'Data tidak valid'], 400);
-        }
-
-        $data = $realisasiData->data; // Ambil nilai data langsung
-
-        // Hitung persentase sisa dari pagu setelah dikurangi realisasi
-        $pagu = $realisasiData->pagu;
-        $realisasi = $realisasiData->realisasi;
-        $sisa = $pagu - $realisasi;
-
-        // Hitung persentase dan format menjadi dua desimal
-        $persentasePagu = number_format(100, 2); // Pagu selalu 100%
-        $persentaseRealisasi = number_format(($realisasi / $pagu) * 100, 2);
-        $persentaseSisa = number_format(($sisa / $pagu) * 100, 2);
-
-        // Ambil nilai P dan R
-        $P = $realisasiData->P;
-        $R = $realisasiData->R;
-
-        // Kirim data
-        return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R'));
+        return view('pages.forms-validation');
     }
 
     public function store(Request $request)
@@ -114,5 +90,22 @@ class RealisasiController extends Controller
         $realisasi->update($request->all());
 
         return redirect()->route('realisasi.index')->with('success', 'Data updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        // Hapus data berdasarkan ID
+        $realisasi = Realisasi::findOrFail($id);
+        $realisasi->delete();
+
+        return redirect()->route('realisasi.index')->with('success', 'Data deleted successfully.');
+    }
+
+    public function getData()
+    {
+        // Ambil semua data dari tabel realisasi
+        $realisasiData = Realisasi::all();
+
+        return response()->json($realisasiData);
     }
 }

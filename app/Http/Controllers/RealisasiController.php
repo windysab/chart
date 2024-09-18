@@ -65,13 +65,17 @@ class RealisasiController extends Controller
         return redirect()->route('realisasi.index')->with('success', 'Data created successfully.');
     }
 
+
     public function edit($id)
     {
-        // Ambil data berdasarkan ID
-        $realisasi = Realisasi::findOrFail($id);
+        $realisasi = Realisasi::find($id);
 
-        // Kirim data ke view
-        return view('pages.forms-validation', compact('realisasi'));
+        if (!$realisasi) {
+            return redirect()->route('realisasi.index')->with('error', 'Data not found.');
+        }
+
+        $allRealisasi = Realisasi::all();
+        return view('pages.forms-validation', compact('realisasi', 'allRealisasi'));
     }
 
     public function update(Request $request, $id)

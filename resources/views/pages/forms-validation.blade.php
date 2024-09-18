@@ -31,6 +31,17 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="selectRealisasi">Select Realisasi ID</label>
+                                    <select id="selectRealisasi" class="form-control" onchange="location = this.value;">
+                                        <option value="">-- Select ID --</option>
+                                        @foreach($allRealisasi as $item)
+                                        <option value="{{ url('realisasi/' . $item->id . '/edit') }}" {{ $item->id == $realisasi->id ? 'selected' : '' }}>
+                                            {{ $item->id }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label>Type</label>
                                     <input type="text" name="type" class="form-control" value="{{ $realisasi->type }}" required>
                                     <div class="invalid-feedback">

@@ -9,14 +9,13 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>REALISASI</span></a>
                 <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
-                    </li>
                     <li class="{{ Request::is('forms-validation') ? 'active' : '' }}">
-                        <a class="nav-link"
-                            href="{{ url('forms-validation') }}">Validation</a>
+                        <a class="nav-link" href="{{ url('forms-validation') }}">Tambah Data Realisasi</a>
+                    </li>
+                    <li class="{{ Request::is('realisasi/*/edit') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('realisasi/1/edit') }}">Edit Data Realisasi</a>
                     </li>
                 </ul>
             </li>

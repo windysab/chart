@@ -16,7 +16,7 @@
             <img src="https://img.icons8.com/ios-filled/50/000000/money.png" alt="Logo">
             <div>
                 <h2>REALISASI ANGGARAN</h2>
-                <h3>PENGADILAN AGAMA AMUNTAI</h3>
+                <h3>PENGADILAN AGAMA AMUNTAI KELAS IB</h3>
             </div>
         </div>
         <div class="progress-wrapper">

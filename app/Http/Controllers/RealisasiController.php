@@ -9,7 +9,6 @@ class RealisasiController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
         // Ambil data dari tabel realisasi baru
         // $realisasiData = Realisasi::first();
 
@@ -17,16 +16,6 @@ class RealisasiController extends Controller
 
 
 
-=======
-        // Ambil data terbaru dari tabel realisasi
-        $realisasiData = Realisasi::latest()->first();
-
-        // Pastikan data diambil dalam format yang benar
-        if (!isset($realisasiData->data)) {
-            return response()->json(['error' => 'Data tidak valid'], 400);
-        }
-
->>>>>>> 7b9c603654584416ab40888a8ad4a40eb22df117
         $data = $realisasiData->data; // Ambil nilai data langsung
 
         // Hitung persentase sisa dari pagu setelah dikurangi realisasi
@@ -53,7 +42,6 @@ class RealisasiController extends Controller
         return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R', 'S', 'persentaseP', 'persentaseR', 'persentaseS'));
     }
 
-<<<<<<< HEAD
     public function getData()
     {
         // Ambil data dari tabel realisasi
@@ -84,8 +72,6 @@ class RealisasiController extends Controller
         return view('realisasi', compact('data', 'pagu', 'realisasi', 'sisa', 'persentasePagu', 'persentaseRealisasi', 'persentaseSisa', 'P', 'R'));
     }
 
-=======
->>>>>>> 7b9c603654584416ab40888a8ad4a40eb22df117
     public function store(Request $request)
     {
         $request->validate([

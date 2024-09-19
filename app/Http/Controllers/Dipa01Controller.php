@@ -54,6 +54,7 @@ class Dipa01Controller extends Controller
     datasets: [
       {
         data: [$progressGajiPagu],
+        backgroundColor: 'green'
       },
     ],
   },
@@ -77,6 +78,7 @@ EOD;
     datasets: [
       {
         data: [$progressOperasionalPagu],
+        backgroundColor: 'blue'
       },
     ],
   },
@@ -95,6 +97,9 @@ EOD;
         $progressOperasionalTotal = number_format($progressOperasionalTotal, 1);
 
         // Return the view with the calculated progress values and chart URLs
-        return view('dipa01', compact('progressGaji', 'progressOperasional', 'chartUrlGaji', 'chartUrlOperasional', 'progressGajiTotal', 'progressOperasionalTotal'));
+        // return view('dipa01', compact('progressGaji', 'progressOperasional', 'chartUrlGaji', 'chartUrlOperasional', 'progressGajiTotal', 'progressOperasionalTotal'));
+
+
+        return view('dipa01', compact('progressGaji', 'progressOperasional', 'chartUrlGaji', 'chartUrlOperasional', 'progressGajiTotal', 'progressOperasionalTotal', 'totalGajiPagu', 'totalGajiRealisasi', 'totalOperasionalPagu', 'totalOperasionalRealisasi'));
     }
 }

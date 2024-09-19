@@ -13,7 +13,7 @@ class Dipa01Controller extends Controller
     {
         // Fetch all data from the Dipa01Data model
         $data = Dipa01Data::all();
-        Log::info('Dipa01 Data:', ['data' => $data]);
+        //Log::info('Dipa01 Data:', ['data' => $data]);
 
         // Calculate the total Gaji and Operasional
         $totalGaji = $data->sum('Gaji');

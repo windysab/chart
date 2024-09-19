@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserSeeder::class);
         $this->call(ChartDataSeeder::class);
         $this->call(RealisasiSeeder::class);
+        $this->call(Dipa01DataSeeder::class);
     }
 }

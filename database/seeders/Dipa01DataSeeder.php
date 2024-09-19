@@ -23,4 +23,3 @@ class Dipa01DataSeeder extends Seeder
         ]);
     }
 }
-

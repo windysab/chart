@@ -16,10 +16,10 @@ class Dipa01DataSeeder extends Seeder
             'label' => 'September',
             'Gaji' => 69,
             'Operasional' => 30,
-            'GajiPagu' => 20000,
-            'GajiRealisasi' => 12000,
-            'OperasionalPagu' => 30000,
-            'OperasionalRealisasi' => 21000,
+            'GajiPagu' => 2856036000,
+            'GajiRealisasi' => 1839938838,
+            'OperasionalPagu' => 1275909000,
+            'OperasionalRealisasi' => 801901838,
         ]);
     }
 }

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dipa 01</title>
+    <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        /* General body styling */
         body {
             font-family: 'Roboto', sans-serif;
             background: linear-gradient(to right, #3b82f6, #9333ea);
@@ -22,7 +21,6 @@
             color: #333;
         }
 
-        /* Container styling */
         .container {
             text-align: center;
             background: #fff;
@@ -34,7 +32,6 @@
             max-width: 800px;
         }
 
-        /* Progress bar styling */
         .progress {
             height: 30px;
             border-radius: 15px;
@@ -59,7 +56,7 @@
 <body>
 
     <div class="container">
-        <h2>DIPA 01</h2>
+        <h2>Combined Progress Bar With Labels</h2>
         <div class="progress">
             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $progressGaji }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $progressGaji }}%">
                 Gaji: {{ $progressGaji }}%
@@ -68,6 +65,10 @@
                 Operasional: {{ $progressOperasional }}%
             </div>
         </div>
+        <h2>Gaji Progress Chart</h2>
+        <img src="{{ $chartUrlGaji }}" alt="Gaji Progress Chart">
+        <h2>Operasional Progress Chart</h2>
+        <img src="{{ $chartUrlOperasional }}" alt="Operasional Progress Chart">
     </div>
 
 </body>

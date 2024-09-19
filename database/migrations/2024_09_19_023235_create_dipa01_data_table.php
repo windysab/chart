@@ -18,6 +18,10 @@ class CreateDipa01DataTable extends Migration
             $table->string('label');
             $table->integer('Gaji');
             $table->integer('Operasional');
+            $table->integer('GajiPagu');
+            $table->integer('GajiRealisasi');
+            $table->integer('OperasionalPagu');
+            $table->integer('OperasionalRealisasi');
             $table->timestamps();
         });
     }

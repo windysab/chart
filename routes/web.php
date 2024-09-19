@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\Dipa01Controller;
 use App\Http\Controllers\TestDBController;
 use App\Http\Controllers\RealisasiController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,9 @@ Route::get('/forms-validation', function () {
 
 // Resource route for RealisasiController
 Route::resource('realisasi', RealisasiController::class);
+
+// Route::get('/dipa01', [Dipa01Controller::class, 'index']);
+Route::get('/dipa01', [Dipa01Controller::class, 'showChart']);
 
 
 Route::get('/dashboard', function () {

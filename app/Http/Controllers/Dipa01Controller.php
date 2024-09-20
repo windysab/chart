@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Dipa01Data;
 use Illuminate\Http\Request;
-use QuickChart;
 
 class Dipa01Controller extends Controller
 {
@@ -40,66 +39,17 @@ class Dipa01Controller extends Controller
         $progressGajiPagu = number_format($progressGajiPagu, 1);
         $progressOperasionalPagu = number_format($progressOperasionalPagu, 1);
 
-        // Generate chart URL using QuickChart for Gaji
-        $qcGaji = new QuickChart(array(
-            'width' => 300,
-            'height' => 50,
-            'version' => '2.9.4',
+        // Return the view with the calculated progress values and chart data
+        return view('dipa01', compact(
+            'progressGaji',
+            'progressOperasional',
+            'totalGajiPagu',
+            'totalGajiRealisasi',
+            'totalOperasionalPagu',
+            'totalOperasionalRealisasi',
+            'progressGajiPagu',
+            'progressOperasionalPagu'
         ));
-
-        $configGaji = <<<EOD
-{
-  type: 'progressBar',
-  data: {
-    datasets: [
-      {
-        data: [$progressGajiPagu],
-        backgroundColor: 'green'
-      },
-    ],
-  },
-}
-EOD;
-
-        $qcGaji->setConfig($configGaji);
-        $chartUrlGaji = $qcGaji->getUrl();
-
-        // Generate chart URL using QuickChart for Operasional
-        $qcOperasional = new QuickChart(array(
-            'width' => 300,
-            'height' => 50,
-            'version' => '2.9.4',
-        ));
-
-        $configOperasional = <<<EOD
-{
-  type: 'progressBar',
-  data: {
-    datasets: [
-      {
-        data: [$progressOperasionalPagu],
-        backgroundColor: 'blue'
-      },
-    ],
-  },
-}
-EOD;
-
-        $qcOperasional->setConfig($configOperasional);
-        $chartUrlOperasional = $qcOperasional->getUrl();
-
-        // Calculate additional progress percentages for Gaji and Operasional out of the total
-        $progressGajiTotal = $total > 0 ? ($totalGaji / $total) * 100 : 0;
-        $progressOperasionalTotal = $total > 0 ? ($totalOperasional / $total) * 100 : 0;
-
-        // Format these additional progress values to one decimal place
-        $progressGajiTotal = number_format($progressGajiTotal, 1);
-        $progressOperasionalTotal = number_format($progressOperasionalTotal, 1);
-
-        // Return the view with the calculated progress values and chart URLs
-        // return view('dipa01', compact('progressGaji', 'progressOperasional', 'chartUrlGaji', 'chartUrlOperasional', 'progressGajiTotal', 'progressOperasionalTotal'));
-
-
-        return view('dipa01', compact('progressGaji', 'progressOperasional', 'chartUrlGaji', 'chartUrlOperasional', 'progressGajiTotal', 'progressOperasionalTotal', 'totalGajiPagu', 'totalGajiRealisasi', 'totalOperasionalPagu', 'totalOperasionalRealisasi'));
     }
 }
+ 

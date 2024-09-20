@@ -18,7 +18,7 @@ Route::get('/chart', [ChartController::class, 'showChart']);
 Route::get('/realisasi', [RealisasiController::class, 'index']);
 
 
-Route::get('/realisasi/data', [RealisasiController::class, 'getData']);
+// Route::get('/realisasi/data', [RealisasiController::class, 'getData']);
 
 Route::get('/forms-validation', function () {
     return view('pages.forms-validation', ['type_menu' => 'forms']);
@@ -29,6 +29,7 @@ Route::resource('realisasi', RealisasiController::class);
 
 // Route::get('/dipa01', [Dipa01Controller::class, 'index']);
 Route::get('/dipa01', [Dipa01Controller::class, 'showChart']);
+
 
 
 Route::get('/dashboard', function () {

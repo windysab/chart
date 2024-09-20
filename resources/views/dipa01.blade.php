@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -17,76 +19,88 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: #333;
+            min-height: 100vh;
+            color: #fff;
         }
 
         .container {
             text-align: center;
             background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
             border: 2px solid #ddd;
             width: 90%;
-            max-width: 800px;
+            max-width: 900px;
+        }
+
+        h2 {
+            color: #3b82f6;
+            margin-bottom: 30px;
         }
 
         .progress {
-            height: 30px;
-            border-radius: 15px;
+            height: 35px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
             position: relative;
         }
 
         .progress-bar {
-            line-height: 30px;
-            font-size: 14px;
+            line-height: 35px;
+            font-size: 16px;
             transition: width 1s ease-in-out;
         }
 
         .progress-bar-success {
-            background-color: #5cb85c;
+            background-color: #4caf50;
         }
 
         .progress-bar-info {
-            background-color: #5bc0de;
+            background-color: #2196f3;
         }
 
         .card {
             margin-top: 20px;
             padding: 20px;
             background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             width: 100%;
-            border: 1px solid #ddd;
+            max-width: 800px;
+            border: none;
         }
 
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
         }
 
         .card-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             margin-bottom: 20px;
             color: #3b82f6;
             text-align: center;
         }
 
-        .card-info {
-            font-size: 14px;
+        .card-info1 {
+            font-size: 18px; /* Adjusted font size */
             margin-top: 10px;
-            color: #9333ea;
+            color: #056e3d;
+        }
+
+        .card-info {
+            font-size: 18px; /* Adjusted font size */
+            margin-top: 10px;
+            color: #220377;
         }
 
         .card-image {
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(19, 9, 9, 0.15);
             max-width: 100%;
             height: auto;
         }
@@ -94,7 +108,7 @@
         .progress-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 30px;
             flex-wrap: wrap;
         }
 
@@ -103,32 +117,56 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 800px;
         }
 
         .charts-row {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             width: 100%;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .half-chart {
             flex: 1;
             text-align: center;
             padding: 10px;
+            min-width: 300px;
         }
 
-        .half-chart img {
+        .half-chart canvas {
             width: 90%;
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
+        @media (max-width: 768px) {
+            .progress {
+                height: 25px;
+            }
+
+            .progress-bar {
+                font-size: 14px;
+                line-height: 25px;
+            }
+
+            .card-title {
+                font-size: 18px;
+            }
+
+            .card-info {
+                font-size: 14px;
+            }
+
+            .half-chart canvas {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Combined Progress Bar With Labels</h2>
+        <h2>Progress Bar with Detailed Information</h2>
         <div class="progress">
             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $progressGaji }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $progressGaji }}%" data-bs-toggle="tooltip" data-bs-placement="top" title="Gaji: {{ $progressGaji }}%">
                 Gaji: {{ $progressGaji }}%
@@ -145,12 +183,10 @@
                         <div class="card-title"><i class="fas fa-chart-line"></i> Gaji & Operasional Progress Charts</div>
                         <div class="charts-row">
                             <div class="half-chart">
-                                <img src="{{ $chartUrlGaji }}" alt="Gaji Progress Chart" class="card-image">
-                                <div class="card-info">Pagu: {{ number_format($totalGajiPagu, 0, ',', '.') }} | Realisasi: {{ number_format($totalGajiRealisasi, 0, ',', '.') }}</div>
+                                <canvas id="gajiChart"></canvas>
                             </div>
                             <div class="half-chart">
-                                <img src="{{ $chartUrlOperasional }}" alt="Operasional Progress Chart" class="card-image">
-                                <div class="card-info">Pagu: {{ number_format($totalOperasionalPagu, 0, ',', '.') }} | Realisasi: {{ number_format($totalOperasionalRealisasi, 0, ',', '.') }}</div>
+                                <canvas id="operasionalChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -164,6 +200,79 @@
         var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
+
+        var gajiCtx = document.getElementById('gajiChart').getContext('2d');
+        var operasionalCtx = document.getElementById('operasionalChart').getContext('2d');
+
+        var gajiChart = new Chart(gajiCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pagu', 'Realisasi', 'Sisa'],
+                datasets: [{
+                    data: [{{ $totalGajiPagu }}, {{ $totalGajiRealisasi }}, {{ $totalGajiPagu - $totalGajiRealisasi }}],
+                    backgroundColor: ['#ff0000', '#00ff00', '#ffa500'],
+                    hoverBackgroundColor: ['#ff6666', '#66ff66', '#ffd966']
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        formatter: function(value, context) {
+                            return context.chart.data.labels[context.dataIndex] + ': ' + value;
+                        },
+                        color: '#fff',
+                        font: {
+                            size: 20,
+                            weight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.label || '';
+                                var value = context.raw || 0;
+                                return label + ': ' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        var operasionalChart = new Chart(operasionalCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pagu', 'Realisasi', 'Sisa'],
+                datasets: [{
+                    data: [{{ $totalOperasionalPagu }}, {{ $totalOperasionalRealisasi }}, {{ $totalOperasionalPagu - $totalOperasionalRealisasi }}],
+                    backgroundColor: ['#ff0000', '#0000ff', '#ffa500'],
+                    hoverBackgroundColor: ['#ff6666', '#6666ff', '#ffd966']
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        formatter: function(value, context) {
+                            return context.chart.data.labels[context.dataIndex] + ': ' + value;
+                        },
+                        color: '#fff',
+                        font: {
+                            size: 20,
+                            weight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.label || '';
+                                var value = context.raw || 0;
+                                return label + ': ' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     </script>
 
 </body>

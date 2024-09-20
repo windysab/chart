@@ -19,11 +19,29 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>CHART DIPA</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('/realisasi') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/realisasi') }}">DIPA 01 dan DIPA 04</a>
+                    </li>
+                    <li class="{{ Request::is('/dipa01') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/dipa01') }}">DIPA 01</a>
+                    </li>
+                    <li class="{{ Request::is('/chart') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/chart') }}">DIPA 04</a>
+                    </li>
+                    <li class="{{ Request::is('/realisasi') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/realisasi') }}">REALISASI</a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="{{ Request::is('credits') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('credits') }}"><i class="fas fa-pencil-ruler">
                     </i> <span>Credits</span>
                 </a>
+
             </li>
         </ul>
 

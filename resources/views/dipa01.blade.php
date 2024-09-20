@@ -15,6 +15,11 @@
             color: red;
             font-weight: bold;
         }
+        .chart-container img {
+            width: 100%; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 800px; /* Set a maximum width */
+        }
     </style>
 </head>
 <body>
@@ -52,6 +57,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Add the chart image below the progress bars -->
+        <div class="chart-container">
+            <img src="{{ $chartUrl }}" alt="Chart">
         </div>
     </div>
 

@@ -20,6 +20,18 @@ class CreateDipa01DataTable extends Migration
             $table->bigInteger('GajiRealisasi');
             $table->bigInteger('OperasionalPagu');
             $table->bigInteger('OperasionalRealisasi');
+            $table->bigInteger('Keperluan_sehari_hari_Pagu');
+            $table->bigInteger('Keperluan_sehari_hari_Realisasi');
+            $table->bigInteger('Langganan_daya_dan_jasa_Pagu');
+            $table->bigInteger('Langganan_daya_dan_jasa_Realisasi');
+            $table->bigInteger('Pemeliharaan_kantor_Pagu');
+            $table->bigInteger('Pemeliharaan_kantor_Realisasi');
+            $table->bigInteger('Pembayaran_Lainnya_Pagu');
+            $table->bigInteger('Pembayaran_Lainnya_Realisasi');
+            $table->bigInteger('Bantuan_sewa_rumah_dinas_hakim_Pagu');
+            $table->bigInteger('Bantuan_sewa_rumah_dinas_hakim_Realisasi');
+            $table->bigInteger('Perjalanan_dinas_Pagu');
+            $table->bigInteger('Perjalanan_dinas_Realisasi');
             $table->timestamps();
         });
     }

@@ -222,7 +222,7 @@
                             var percentage = (value / total * 100).toFixed(1);
                             return percentage + '%';
                         },
-                        color: '#fff',
+                        color: '#000', // Set color to black
                         font: {
                             size: 20,
                             weight: 'bold'
@@ -261,7 +261,7 @@
                             var percentage = (value / total * 100).toFixed(1);
                             return percentage + '%';
                         },
-                        color: '#fff',
+                        color: '#000', // Set color to black
                         font: {
                             size: 20,
                             weight: 'bold'

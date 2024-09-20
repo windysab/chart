@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-    
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -88,13 +87,13 @@
         }
 
         .card-info1 {
-            font-size: 18px; /* Adjusted font size */
+            font-size: 18px;
             margin-top: 10px;
             color: #056e3d;
         }
 
         .card-info {
-            font-size: 18px; /* Adjusted font size */
+            font-size: 18px;
             margin-top: 10px;
             color: #220377;
         }
@@ -220,24 +219,27 @@
                     datalabels: {
                         formatter: function(value, context) {
                             var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                            var percentage = (value / total * 100).toFixed(1);
-                            return percentage + '%';
+                            if (total > 0) {
+                                var percentage = (value / total * 100).toFixed(1);
+                                return percentage + '%';
+                            }
+                            return '';  // Tidak tampilkan jika tidak ada data
                         },
-                        color: '#000', // Set color to black
+                        color: '#000',
                         font: {
-                            size: 20,
+                            size: 16,
                             weight: 'bold'
                         },
                         anchor: 'center',
                         align: 'center'
                     },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                var label = context.label || '';
-                                var value = context.raw || 0;
-                                return label + ': ' + value;
-                            }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            var label = context.label || '';
+                            var value = context.raw || 0;
+                            return label + ': ' + value;
                         }
                     }
                 }
@@ -259,24 +261,27 @@
                     datalabels: {
                         formatter: function(value, context) {
                             var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                            var percentage = (value / total * 100).toFixed(1);
-                            return percentage + '%';
+                            if (total > 0) {
+                                var percentage = (value / total * 100).toFixed(1);
+                                return percentage + '%';
+                            }
+                            return '';  // Tidak tampilkan jika tidak ada data
                         },
-                        color: '#000', // Set color to black
+                        color: '#000',
                         font: {
-                            size: 20,
+                            size: 16,
                             weight: 'bold'
                         },
                         anchor: 'center',
                         align: 'center'
                     },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                var label = context.label || '';
-                                var value = context.raw || 0;
-                                return label + ': ' + value;
-                            }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            var label = context.label || '';
+                            var value = context.raw || 0;
+                            return label + ': ' + value;
                         }
                     }
                 }

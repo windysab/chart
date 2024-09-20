@@ -13,7 +13,7 @@ class Dipa01Controller extends Controller
         $data = Dipa01Data::all();
 
         // Calculate total salary and operational costs
-        $totalGaji = $data->sum('Gaji');
+        $totalGaji = $data->sum('Gaji_dan_Tunjangan');
         $totalOperasional = $data->sum('Operasional');
 
         // Calculate the progress as a percentage of Gaji and Operasional out of the total
@@ -52,4 +52,3 @@ class Dipa01Controller extends Controller
         ));
     }
 }
- 

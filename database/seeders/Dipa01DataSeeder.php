@@ -14,7 +14,7 @@ class Dipa01DataSeeder extends Seeder
     {
         Dipa01Data::create([
             'label' => 'September',
-            'Gaji' => 69,
+            'Gaji_dan_Tunjangan' => 69, // Updated column name
             'Operasional' => 30,
             'GajiPagu' => 2856036000,
             'GajiRealisasi' => 1839938838,

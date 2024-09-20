@@ -8,30 +8,26 @@ class CreateDipa01DataTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('dipa01_data', function (Blueprint $table) {
             $table->id();
             $table->string('label');
-            $table->integer('Gaji');
+            $table->integer('Gaji_dan_Tunjangan'); // Correct column name
             $table->integer('Operasional');
-            $table->bigInteger('GajiPagu')->default(0);
-            $table->bigInteger('GajiRealisasi')->default(0);
-            $table->bigInteger('OperasionalPagu')->default(0);
-            $table->bigInteger('OperasionalRealisasi')->default(0);
+            $table->bigInteger('GajiPagu');
+            $table->bigInteger('GajiRealisasi');
+            $table->bigInteger('OperasionalPagu');
+            $table->bigInteger('OperasionalRealisasi');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('dipa01_data');
     }

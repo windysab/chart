@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Progress Charts</title>
     <meta charset="utf-8">
@@ -142,7 +143,7 @@
         .pagu-info {
             margin-top: 10px;
             font-size: 16px;
-            color: #333;
+            color: red;
         }
 
         @media (max-width: 768px) {
@@ -169,15 +170,20 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h2>Progress Bar with Detailed Information</h2>
         <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $progressGaji }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $progressGaji }}%" data-bs-toggle="tooltip" data-bs-placement="top" title="Gaji: {{ $progressGaji }}%">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $progressGaji }}"
+                aria-valuemin="0" aria-valuemax="100" style="width:{{ $progressGaji }}%" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Gaji: {{ $progressGaji }}%">
                 Gaji: {{ $progressGaji }}%
             </div>
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ $progressOperasional }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $progressOperasional }}%" data-bs-toggle="tooltip" data-bs-placement="top" title="Operasional: {{ $progressOperasional }}%">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ $progressOperasional }}"
+                aria-valuemin="0" aria-valuemax="100" style="width:{{ $progressOperasional }}%" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Operasional: {{ $progressOperasional }}%">
                 Operasional: {{ $progressOperasional }}%
             </div>
         </div>
@@ -186,15 +192,18 @@
             <div class="progress-container">
                 <div class="chart-item">
                     <div class="card">
-                        <div class="card-title"><i class="fas fa-chart-line"></i> Gaji & Operasional Progress Charts</div>
+                        <div class="card-title"><i class="fas fa-chart-line"></i> Gaji & Operasional Progress Charts
+                        </div>
                         <div class="charts-row">
                             <div class="half-chart">
                                 <canvas id="gajiChart"></canvas>
-                                <div class="pagu-info">Pagu Gaji: Rp. {{ number_format($totalGajiPagu, 0, ',', '.') }}</div>
+                                <div class="pagu-info">Pagu Gaji: Rp. {{ number_format($totalGajiPagu, 0, ',', '.') }}
+                                </div>
                             </div>
                             <div class="half-chart">
                                 <canvas id="operasionalChart"></canvas>
-                                <div class="pagu-info">Pagu Operasional: Rp. {{ number_format($totalOperasionalPagu, 0, ',', '.') }}</div>
+                                <div class="pagu-info">Pagu Operasional: Rp. {{ number_format($totalOperasionalPagu, 0,
+                                    ',', '.') }}</div>
                             </div>
                         </div>
                     </div>
@@ -212,91 +221,94 @@
         var gajiChart = new Chart(gajiCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Realisasi', 'Sisa'],
+                labels: ['Realisasi: Rp. {{ number_format($totalGajiRealisasi, 0, ', ', '.') }}', 'Sisa: Rp. {{ number_format($totalGajiPagu - $totalGajiRealisasi, 0, ', ', '.') }}'],
                 datasets: [{
-                    data: [{{ $totalGajiRealisasi }}, {{ $totalGajiPagu - $totalGajiRealisasi }}],
-                    backgroundColor: ['#00ff00', '#ffa500'],
-                    hoverBackgroundColor: ['#66ff66', '#ffd966']
+                    data: [{{ $totalGajiRealisasi }}, {{ $totalGajiPagu - $totalGajiRealisasi }
+        }],
+            backgroundColor: ['#00ff00', '#ffa500'],
+            hoverBackgroundColor: ['#66ff66', '#ffd966']
                 }]
             },
-            options: {
-                plugins: {
-                    datalabels: {
-                        formatter: function(value, context) {
-                            var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                            if (total > 0) {
-                                var percentage = (value / total * 100).toFixed(1);
-                                return percentage + '%';
-                            }
-                            return '';  // Tidak tampilkan jika tidak ada data
-                        },
-                        color: '#000',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        anchor: 'center',
-                        align: 'center'
-                    },
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            var label = context.label || '';
-                            var value = context.raw || 0;
-                            var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+        options: {
+            plugins: {
+                datalabels: {
+                    formatter: function(value, context) {
+                        var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        if (total > 0) {
                             var percentage = (value / total * 100).toFixed(1);
-                            return label + ': ' + value + ' (' + percentage + '%)';
+                            return percentage + '%';
                         }
+                        return '';  // Tidak tampilkan jika tidak ada data
+                    },
+                    color: '#000',
+                        font: {
+                        size: 16,
+                            weight: 'bold'
+                    },
+                    anchor: 'center',
+                        align: 'center'
+                },
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        var label = context.label || '';
+                        var value = context.raw || 0;
+                        var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        var percentage = (value / total * 100).toFixed(1);
+                        return label + ': ' + value + ' (' + percentage + '%)';
                     }
                 }
             }
+        }
         });
 
         var operasionalChart = new Chart(operasionalCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Realisasi', 'Sisa'],
+                labels: ['Realisasi: Rp. {{ number_format($totalOperasionalRealisasi, 0, ', ', '.') }}', 'Sisa: Rp. {{ number_format($totalOperasionalPagu - $totalOperasionalRealisasi, 0, ', ', '.') }}'],
                 datasets: [{
-                    data: [{{ $totalOperasionalRealisasi }}, {{ $totalOperasionalPagu - $totalOperasionalRealisasi }}],
-                    backgroundColor: ['#0000ff', '#ffa500'],
-                    hoverBackgroundColor: ['#6666ff', '#ffd966']
+                    data: [{{ $totalOperasionalRealisasi }}, {{ $totalOperasionalPagu - $totalOperasionalRealisasi }
+        }],
+            backgroundColor: ['#0000ff', '#ffa500'],
+            hoverBackgroundColor: ['#6666ff', '#ffd966']
                 }]
             },
-            options: {
-                plugins: {
-                    datalabels: {
-                        formatter: function(value, context) {
-                            var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                            if (total > 0) {
-                                var percentage = (value / total * 100).toFixed(1);
-                                return percentage + '%';
-                            }
-                            return '';  // Tidak tampilkan jika tidak ada data
-                        },
-                        color: '#000',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        anchor: 'center',
-                        align: 'center'
-                    },
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            var label = context.label || '';
-                            var value = context.raw || 0;
-                            var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+        options: {
+            plugins: {
+                datalabels: {
+                    formatter: function(value, context) {
+                        var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        if (total > 0) {
                             var percentage = (value / total * 100).toFixed(1);
-                            return label + ': ' + value + ' (' + percentage + '%)';
+                            return percentage + '%';
                         }
+                        return '';  // Tidak tampilkan jika tidak ada data
+                    },
+                    color: '#000',
+                        font: {
+                        size: 16,
+                            weight: 'bold'
+                    },
+                    anchor: 'center',
+                        align: 'center'
+                },
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        var label = context.label || '';
+                        var value = context.raw || 0;
+                        var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        var percentage = (value / total * 100).toFixed(1);
+                        return label + ': ' + value + ' (' + percentage + '%)';
                     }
                 }
             }
+        }
         });
     </script>
 
 </body>
+
 </html>

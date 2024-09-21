@@ -41,18 +41,18 @@ class Dipa01Controller extends Controller
         $progressOperasionalPagu = number_format($progressOperasionalPagu, 1);
 
         // Fetch additional data for the chart
-        $keperluanSehariHariPagu = $data->sum('Keperluan_sehari_hari_Pagu');
-        $keperluanSehariHariRealisasi = $data->sum('Keperluan_sehari_hari_Realisasi');
-        $langgananDayaDanJasaPagu = $data->sum('Langganan_daya_dan_jasa_Pagu');
-        $langgananDayaDanJasaRealisasi = $data->sum('Langganan_daya_dan_jasa_Realisasi');
-        $pemeliharaanKantorPagu = $data->sum('Pemeliharaan_kantor_Pagu');
-        $pemeliharaanKantorRealisasi = $data->sum('Pemeliharaan_kantor_Realisasi');
-        $pembayaranLainnyaPagu = $data->sum('Pembayaran_Lainnya_Pagu');
-        $pembayaranLainnyaRealisasi = $data->sum('Pembayaran_Lainnya_Realisasi');
-        $bantuanSewaRumahDinasHakimPagu = $data->sum('Bantuan_sewa_rumah_dinas_hakim_Pagu');
-        $bantuanSewaRumahDinasHakimRealisasi = $data->sum('Bantuan_sewa_rumah_dinas_hakim_Realisasi');
-        $perjalananDinasPagu = $data->sum('Perjalanan_dinas_Pagu');
-        $perjalananDinasRealisasi = $data->sum('Perjalanan_dinas_Realisasi');
+        $totalKeperluanSehariHariPagu = $data->sum('Keperluan_sehari_hari_Pagu');
+        $totalKeperluanSehariHariRealisasi = $data->sum('Keperluan_sehari_hari_Realisasi');
+        $totalLanggananDayaDanJasaPagu = $data->sum('Langganan_daya_dan_jasa_Pagu');
+        $totalLanggananDayaDanJasaRealisasi = $data->sum('Langganan_daya_dan_jasa_Realisasi');
+        $totalPemeliharaanKantorPagu = $data->sum('Pemeliharaan_kantor_Pagu');
+        $totalPemeliharaanKantorRealisasi = $data->sum('Pemeliharaan_kantor_Realisasi');
+        $totalPembayaranLainnyaPagu = $data->sum('Pembayaran_Lainnya_Pagu');
+        $totalPembayaranLainnyaRealisasi = $data->sum('Pembayaran_Lainnya_Realisasi');
+        $totalBantuanSewaRumahDinasHakimPagu = $data->sum('Bantuan_sewa_rumah_dinas_hakim_Pagu');
+        $totalBantuanSewaRumahDinasHakimRealisasi = $data->sum('Bantuan_sewa_rumah_dinas_hakim_Realisasi');
+        $totalPerjalananDinasPagu = $data->sum('Perjalanan_dinas_Pagu');
+        $totalPerjalananDinasRealisasi = $data->sum('Perjalanan_dinas_Realisasi');
 
         // Generate QuickChart URL
         $qc = new QuickChart(array(
@@ -67,8 +67,8 @@ class Dipa01Controller extends Controller
             data: {
                 labels: ['Keperluan Sehari-hari', 'Langganan Daya dan Jasa', 'Pemeliharaan Kantor', 'Pembayaran Lainnya', 'Bantuan Sewa Rumah Dinas Hakim', 'Perjalanan Dinas'],
                 datasets: [
-                    { label: 'Pagu', data: [$keperluanSehariHariPagu, $langgananDayaDanJasaPagu, $pemeliharaanKantorPagu, $pembayaranLainnyaPagu, $bantuanSewaRumahDinasHakimPagu, $perjalananDinasPagu] },
-                    { label: 'Realisasi', data: [$keperluanSehariHariRealisasi, $langgananDayaDanJasaRealisasi, $pemeliharaanKantorRealisasi, $pembayaranLainnyaRealisasi, $bantuanSewaRumahDinasHakimRealisasi, $perjalananDinasRealisasi] },
+                    { label: 'Pagu', data: [$totalKeperluanSehariHariPagu, $totalLanggananDayaDanJasaPagu, $totalPemeliharaanKantorPagu, $totalPembayaranLainnyaPagu, $totalBantuanSewaRumahDinasHakimPagu, $totalPerjalananDinasPagu] },
+                    { label: 'Realisasi', data: [$totalKeperluanSehariHariRealisasi, $totalLanggananDayaDanJasaRealisasi, $totalPemeliharaanKantorRealisasi, $totalPembayaranLainnyaRealisasi, $totalBantuanSewaRumahDinasHakimRealisasi, $totalPerjalananDinasRealisasi] },
                 ],
             },
         }
@@ -87,7 +87,19 @@ class Dipa01Controller extends Controller
             'totalOperasionalRealisasi',
             'progressGajiPagu',
             'progressOperasionalPagu',
-            'chartUrl'
+            'chartUrl',
+            'totalKeperluanSehariHariPagu',
+            'totalKeperluanSehariHariRealisasi',
+            'totalLanggananDayaDanJasaPagu',
+            'totalLanggananDayaDanJasaRealisasi',
+            'totalPemeliharaanKantorPagu',
+            'totalPemeliharaanKantorRealisasi',
+            'totalPembayaranLainnyaPagu',
+            'totalPembayaranLainnyaRealisasi',
+            'totalBantuanSewaRumahDinasHakimPagu',
+            'totalBantuanSewaRumahDinasHakimRealisasi',
+            'totalPerjalananDinasPagu',
+            'totalPerjalananDinasRealisasi'
         ));
     }
 }

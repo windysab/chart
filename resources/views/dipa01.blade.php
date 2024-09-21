@@ -20,6 +20,12 @@
             height: auto; /* Maintain aspect ratio */
             max-width: 800px; /* Set a maximum width */
         }
+        .data-table {
+            margin-top: 20px;
+        }
+        .data-table th, .data-table td {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -62,6 +68,58 @@
         <!-- Add the chart image below the progress bars -->
         <div class="chart-container">
             <img src="{{ $chartUrl }}" alt="Chart">
+        </div>
+
+        <!-- Add the table below the chart -->
+        <div class="data-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Pagu</th>
+                        <th>Realisasi</th>
+                        <th>Persen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keperluan Sehari-hari</td>
+                        <td>Rp. {{ number_format($totalKeperluanSehariHariPagu, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($totalKeperluanSehariHariRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalKeperluanSehariHariPagu > 0 ? number_format(($totalKeperluanSehariHariRealisasi / $totalKeperluanSehariHariPagu) * 100, 1) : 0 }}%</td>
+                    </tr>
+                    <tr>
+                        <td>Langganan Daya dan Jasa</td>
+                        <td>Rp. {{ number_format($totalLanggananDayaDanJasaPagu, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($totalLanggananDayaDanJasaRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalLanggananDayaDanJasaPagu > 0 ? number_format(($totalLanggananDayaDanJasaRealisasi / $totalLanggananDayaDanJasaPagu) * 100, 1) : 0 }}%</td>
+                    </tr>
+                    <tr>
+                        <td>Pemeliharaan Kantor</td>
+                        <td>Rp. {{ number_format($totalPemeliharaanKantorPagu, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($totalPemeliharaanKantorRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalPemeliharaanKantorPagu > 0 ? number_format(($totalPemeliharaanKantorRealisasi / $totalPemeliharaanKantorPagu) * 100, 1) : 0 }}%</td>
+                    </tr>
+                    <tr>
+                        <td>Pembayaran Lainnya</td>
+                        <td>Rp. {{ number_format($totalPembayaranLainnyaPagu, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($totalPembayaranLainnyaRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalPembayaranLainnyaPagu > 0 ? number_format(($totalPembayaranLainnyaRealisasi / $totalPembayaranLainnyaPagu) * 100, 1) : 0 }}%</td>
+                    </tr>
+                    <tr>
+                        <td>Bantuan Sewa Rumah Dinas Hakim</td>
+                        <td>Rp. {{ number_format($totalBantuanSewaRumahDinasHakimPagu, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($totalBantuanSewaRumahDinasHakimRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalBantuanSewaRumahDinasHakimPagu > 0 ? number_format(($totalBantuanSewaRumahDinasHakimRealisasi / $totalBantuanSewaRumahDinasHakimPagu) * 100, 1) : 0 }}%</td>
+                    </tr>
+                    <tr>
+                        <td>Perjalanan Dinas</td>
+                        <td>Rp. {{ number_format($totalPerjalananDinasPagu, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($totalPerjalananDinasRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalPerjalananDinasPagu > 0 ? number_format(($totalPerjalananDinasRealisasi / $totalPerjalananDinasPagu) * 100, 1) : 0 }}%</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 

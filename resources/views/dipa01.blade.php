@@ -32,6 +32,10 @@
         .data-table .realisasi-cell {
             color: red !important;
         }
+        .highlight {
+            background-color: green !important;
+            color: white !important;
+        }
     </style>
 </head>
 <body>
@@ -88,37 +92,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr id="row-keperluan">
                         <td>Keperluan Sehari-hari</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalKeperluanSehariHariPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalKeperluanSehariHariRealisasi, 0, ',', '.') }}</td>
                         <td>{{ $totalKeperluanSehariHariPagu > 0 ? number_format(($totalKeperluanSehariHariRealisasi / $totalKeperluanSehariHariPagu) * 100, 1) : 0 }}%</td>
                     </tr>
-                    <tr>
+                    <tr id="row-langganan">
                         <td>Langganan Daya dan Jasa</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalLanggananDayaDanJasaPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalLanggananDayaDanJasaRealisasi, 0, ',', '.') }}</td>
                         <td>{{ $totalLanggananDayaDanJasaPagu > 0 ? number_format(($totalLanggananDayaDanJasaRealisasi / $totalLanggananDayaDanJasaPagu) * 100, 1) : 0 }}%</td>
                     </tr>
-                    <tr>
+                    <tr id="row-pemeliharaan">
                         <td>Pemeliharaan Kantor</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPemeliharaanKantorPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalPemeliharaanKantorRealisasi, 0, ',', '.') }}</td>
                         <td>{{ $totalPemeliharaanKantorPagu > 0 ? number_format(($totalPemeliharaanKantorRealisasi / $totalPemeliharaanKantorPagu) * 100, 1) : 0 }}%</td>
                     </tr>
-                    <tr>
+                    <tr id="row-pembayaran">
                         <td>Pembayaran Lainnya</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPembayaranLainnyaPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalPembayaranLainnyaRealisasi, 0, ',', '.') }}</td>
                         <td>{{ $totalPembayaranLainnyaPagu > 0 ? number_format(($totalPembayaranLainnyaRealisasi / $totalPembayaranLainnyaPagu) * 100, 1) : 0 }}%</td>
                     </tr>
-                    <tr>
+                    <tr id="row-bantuan">
                         <td>Bantuan Sewa Rumah Dinas Hakim</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalBantuanSewaRumahDinasHakimPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalBantuanSewaRumahDinasHakimRealisasi, 0, ',', '.') }}</td>
                         <td>{{ $totalBantuanSewaRumahDinasHakimPagu > 0 ? number_format(($totalBantuanSewaRumahDinasHakimRealisasi / $totalBantuanSewaRumahDinasHakimPagu) * 100, 1) : 0 }}%</td>
                     </tr>
-                    <tr>
+                    <tr id="row-perjalanan">
                         <td>Perjalanan Dinas</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPerjalananDinasPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalPerjalananDinasRealisasi, 0, ',', '.') }}</td>

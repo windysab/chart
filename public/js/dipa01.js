@@ -59,7 +59,7 @@ var gajiChart = new Chart(gajiCtx, {
 var operasionalChart = new Chart(operasionalCtx, {
     type: 'doughnut',
     data: {
-        labels: ['Realisasi', 'Sisa'],  // Menampilkan hanya Realisasi dan Sisa
+        labels: ['Realisasi', 'Sisa'],  // Menampilkan hanya Real dan Sisa
         datasets: [{
             data: [totalOperasionalRealisasi, totalOperasionalPagu - totalOperasionalRealisasi],  // Data Realisasi dan Sisa
             backgroundColor: ['#ff0000', '#ffa500'],  // Warna chart
@@ -153,6 +153,21 @@ var mainChart = new Chart(mainChartCtx, {
             },
             datalabels: {
                 display: false  // Menyembunyikan nilai di dalam chart
+            }
+        },
+        onHover: function(event, chartElement) {
+            // Menghapus highlight dari semua baris
+            document.querySelectorAll('.data-table tr').forEach(function(row) {
+                row.classList.remove('highlight');
+            });
+
+            // Menambahkan highlight pada baris yang sesuai
+            if (chartElement.length) {
+                var index = chartElement[0].index;
+                var label = mainChart.data.labels[index];
+                if (label === 'Langganan Daya dan Jasa') {
+                    document.getElementById('row-langganan').classList.add('highlight');
+                }
             }
         }
     }

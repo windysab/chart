@@ -12,69 +12,73 @@ class Dipa01Controller extends Controller
         // Mengambil semua data dari model Dipa01Data
         $data = Dipa01Data::all();
 
-        // Calculate total salary and operational costs
+        // Menghitung total gaji dan operasional
         $totalGaji = $data->sum('Gaji_dan_Tunjangan');
         $totalOperasional = $data->sum('Operasional');
 
-        // Calculate the progress as a percentage of Gaji and Operasional out of the total
-        $total = $totalGaji + $totalOperasional;
-        $progressGaji = $total > 0 ? ($totalGaji / $total) * 100 : 0;
-        $progressOperasional = $total > 0 ? ($totalOperasional / $total) * 100 : 0;
-
-        // Format the progress values to one decimal place
-        $progressGaji = number_format($progressGaji, 1);
-        $progressOperasional = number_format($progressOperasional, 1);
-
-        // Calculate total budgeted and realized amounts for salary and operational costs
+        // Menghitung total pagu dan realisasi untuk gaji dan operasional
         $totalGajiPagu = $data->sum('GajiPagu');
         $totalGajiRealisasi = $data->sum('GajiRealisasi');
         $totalOperasionalPagu = $data->sum('OperasionalPagu');
         $totalOperasionalRealisasi = $data->sum('OperasionalRealisasi');
 
-        // Calculate progress as a percentage of Gaji and Operasional from their respective budgets
-        $progressGajiPagu = $totalGajiPagu > 0 ? ($totalGajiRealisasi / $totalGajiPagu) * 100 : 0;
-        $progressOperasionalPagu = $totalOperasionalPagu > 0 ? ($totalOperasionalRealisasi / $totalOperasionalPagu) * 100 : 0;
+        // Menghitung progress gaji dan operasional sebagai persentase dari total
+        $progressGaji = $this->calculateProgress($totalGaji, $totalGaji + $totalOperasional);
+        $progressOperasional = $this->calculateProgress($totalOperasional, $totalGaji + $totalOperasional);
 
-        // Format the progress values to one decimal place
-        $progressGajiPagu = number_format($progressGajiPagu, 1);
-        $progressOperasionalPagu = number_format($progressOperasionalPagu, 1);
+        // Menghitung progress gaji dan operasional dari pagu masing-masing
+        $progressGajiPagu = $this->calculateProgress($totalGajiRealisasi, $totalGajiPagu);
+        $progressOperasionalPagu = $this->calculateProgress($totalOperasionalRealisasi, $totalOperasionalPagu);
 
-        // Fetch additional data for the chart
-        $totalKeperluanSehariHariPagu = $data->sum('Keperluan_sehari_hari_Pagu');
-        $totalKeperluanSehariHariRealisasi = $data->sum('Keperluan_sehari_hari_Realisasi');
-        $totalLanggananDayaDanJasaPagu = $data->sum('Langganan_daya_dan_jasa_Pagu');
-        $totalLanggananDayaDanJasaRealisasi = $data->sum('Langganan_daya_dan_jasa_Realisasi');
-        $totalPemeliharaanKantorPagu = $data->sum('Pemeliharaan_kantor_Pagu');
-        $totalPemeliharaanKantorRealisasi = $data->sum('Pemeliharaan_kantor_Realisasi');
-        $totalPembayaranLainnyaPagu = $data->sum('Pembayaran_Lainnya_Pagu');
-        $totalPembayaranLainnyaRealisasi = $data->sum('Pembayaran_Lainnya_Realisasi');
-        $totalBantuanSewaRumahDinasHakimPagu = $data->sum('Bantuan_sewa_rumah_dinas_hakim_Pagu');
-        $totalBantuanSewaRumahDinasHakimRealisasi = $data->sum('Bantuan_sewa_rumah_dinas_hakim_Realisasi');
-        $totalPerjalananDinasPagu = $data->sum('Perjalanan_dinas_Pagu');
-        $totalPerjalananDinasRealisasi = $data->sum('Perjalanan_dinas_Realisasi');
+        // Mengambil data tambahan untuk chart
+        $additionalData = $this->getAdditionalData($data);
 
-        // Return the view with the calculated progress values and chart data
-        return view('dipa01', compact(
-            'progressGaji',
-            'progressOperasional',
-            'totalGajiPagu',
-            'totalGajiRealisasi',
-            'totalOperasionalPagu',
-            'totalOperasionalRealisasi',
-            'progressGajiPagu',
-            'progressOperasionalPagu',
-            'totalKeperluanSehariHariPagu',
-            'totalKeperluanSehariHariRealisasi',
-            'totalLanggananDayaDanJasaPagu',
-            'totalLanggananDayaDanJasaRealisasi',
-            'totalPemeliharaanKantorPagu',
-            'totalPemeliharaanKantorRealisasi',
-            'totalPembayaranLainnyaPagu',
-            'totalPembayaranLainnyaRealisasi',
-            'totalBantuanSewaRumahDinasHakimPagu',
-            'totalBantuanSewaRumahDinasHakimRealisasi',
-            'totalPerjalananDinasPagu',
-            'totalPerjalananDinasRealisasi'
-        ));
+        // Mengembalikan view dengan nilai progress yang dihitung dan data chart
+        return view('dipa01', array_merge([
+            'progressGaji' => $progressGaji,
+            'progressOperasional' => $progressOperasional,
+            'totalGajiPagu' => $totalGajiPagu,
+            'totalGajiRealisasi' => $totalGajiRealisasi,
+            'totalOperasionalPagu' => $totalOperasionalPagu,
+            'totalOperasionalRealisasi' => $totalOperasionalRealisasi,
+            'progressGajiPagu' => $progressGajiPagu,
+            'progressOperasionalPagu' => $progressOperasionalPagu,
+        ], $additionalData));
+    }
+
+    /**
+     * Menghitung progress sebagai persentase.
+     *
+     * @param float $part
+     * @param float $total
+     * @return float
+     */
+    private function calculateProgress($part, $total)
+    {
+        return $total > 0 ? number_format(($part / $total) * 100, 1) : 0;
+    }
+
+    /**
+     * Mengambil data tambahan untuk chart.
+     *
+     * @param \Illuminate\Support\Collection $data
+     * @return array
+     */
+    private function getAdditionalData($data)
+    {
+        return [
+            'totalKeperluanSehariHariPagu' => $data->sum('Keperluan_sehari_hari_Pagu'),
+            'totalKeperluanSehariHariRealisasi' => $data->sum('Keperluan_sehari_hari_Realisasi'),
+            'totalLanggananDayaDanJasaPagu' => $data->sum('Langganan_daya_dan_jasa_Pagu'),
+            'totalLanggananDayaDanJasaRealisasi' => $data->sum('Langganan_daya_dan_jasa_Realisasi'),
+            'totalPemeliharaanKantorPagu' => $data->sum('Pemeliharaan_kantor_Pagu'),
+            'totalPemeliharaanKantorRealisasi' => $data->sum('Pemeliharaan_kantor_Realisasi'),
+            'totalPembayaranLainnyaPagu' => $data->sum('Pembayaran_Lainnya_Pagu'),
+            'totalPembayaranLainnyaRealisasi' => $data->sum('Pembayaran_Lainnya_Realisasi'),
+            'totalBantuanSewaRumahDinasHakimPagu' => $data->sum('Bantuan_sewa_rumah_dinas_hakim_Pagu'),
+            'totalBantuanSewaRumahDinasHakimRealisasi' => $data->sum('Bantuan_sewa_rumah_dinas_hakim_Realisasi'),
+            'totalPerjalananDinasPagu' => $data->sum('Perjalanan_dinas_Pagu'),
+            'totalPerjalananDinasRealisasi' => $data->sum('Perjalanan_dinas_Realisasi'),
+        ];
     }
 }

@@ -1,6 +1,17 @@
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #9333ea;
+    --success-color: #4caf50;
+    --info-color: #2196f3;
+    --text-color: #fff;
+    --background-color: #fff;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to right, #3b82f6, #9333ea);
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     margin: 0;
     padding: 0;
     display: flex;
@@ -8,22 +19,22 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .container {
     text-align: center;
-    background: #fff;
+    background: var(--background-color);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    border: 2px solid #ddd;
+    box-shadow: 0 0 20px var(--shadow-color);
+    border: 2px solid var(--border-color);
     width: 90%;
     max-width: 900px;
 }
 
 h2 {
-    color: #3b82f6;
+    color: var(--primary-color);
     margin-bottom: 30px;
 }
 
@@ -43,17 +54,17 @@ h2 {
 }
 
 .progress-bar-success {
-    background-color: #4caf50;
+    background-color: var(--success-color);
 }
 
 .progress-bar-info {
-    background-color: #2196f3;
+    background-color: var(--info-color);
 }
 
 .card {
     margin-top: 20px;
     padding: 20px;
-    background: #fff;
+    background: var(--background-color);
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -70,7 +81,7 @@ h2 {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #3b82f6;
+    color: var(--primary-color);
     text-align: center;
 }
 
@@ -127,11 +138,28 @@ h2 {
     border-radius: 10px;
 }
 
+.chart-container {
+    width: 100%;
+    max-width: 900px;
+    /* Sesuaikan dengan lebar maksimum tabel */
+    margin: 0 auto;
+    /* Center the chart */
+}
+
 .pagu-info {
     margin-top: 10px;
     font-size: 14px;
     color: #333;
-    text-align: center; /* Center the text */
+    text-align: center;
+    /* Center the text */
+}
+
+.data-table {
+    width: 100%;
+    max-width: 900px;
+    /* Sesuaikan dengan lebar maksimum tabel */
+    margin: 0 auto;
+    /* Center the table */
 }
 
 @media (max-width: 768px) {
@@ -156,5 +184,7 @@ h2 {
         width: 100%;
     }
 
-
+    .highlight {
+        background-color: #077120; /* Warna hijau muda */
+    }
 }

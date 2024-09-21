@@ -43,7 +43,7 @@ var gajiChart = new Chart(gajiCtx, {
             },
         },
         // Menampilkan tooltip yang terformat dengan Rupiah
-        tooltip: {
+        tooltips: {
             callbacks: {
                 label: function(context) {
                     var label = context.label || '';  // Mendapatkan label (Realisasi atau Sisa)
@@ -88,7 +88,7 @@ var operasionalChart = new Chart(operasionalCtx, {
             },
         },
         // Menampilkan tooltip yang terformat dengan Rupiah
-        tooltip: {
+        tooltips: {
             callbacks: {
                 label: function(context) {
                     var label = context.label || '';  // Mendapatkan label (Realisasi atau Sisa)
@@ -171,4 +171,6 @@ var mainChart = new Chart(mainChartCtx, {
             }
         }
     }
+
+
 });

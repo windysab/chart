@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Dipa01Data;
 use Illuminate\Http\Request;
-use QuickChart;
 
 class Dipa01Controller extends Controller
 {
@@ -54,29 +53,6 @@ class Dipa01Controller extends Controller
         $totalPerjalananDinasPagu = $data->sum('Perjalanan_dinas_Pagu');
         $totalPerjalananDinasRealisasi = $data->sum('Perjalanan_dinas_Realisasi');
 
-        // Generate QuickChart URL
-        $qc = new QuickChart(array(
-            'width' => 500,
-            'height' => 300,
-            'version' => '2.9.4',
-        ));
-
-        $config = <<<EOD
-        {
-            type: 'bar',
-            data: {
-                labels: ['Keperluan Sehari-hari', 'Langganan Daya dan Jasa', 'Pemeliharaan Kantor', 'Pembayaran Lainnya', 'Bantuan Sewa Rumah Dinas Hakim', 'Perjalanan Dinas'],
-                datasets: [
-                    { label: 'Pagu', data: [$totalKeperluanSehariHariPagu, $totalLanggananDayaDanJasaPagu, $totalPemeliharaanKantorPagu, $totalPembayaranLainnyaPagu, $totalBantuanSewaRumahDinasHakimPagu, $totalPerjalananDinasPagu] },
-                    { label: 'Realisasi', data: [$totalKeperluanSehariHariRealisasi, $totalLanggananDayaDanJasaRealisasi, $totalPemeliharaanKantorRealisasi, $totalPembayaranLainnyaRealisasi, $totalBantuanSewaRumahDinasHakimRealisasi, $totalPerjalananDinasRealisasi] },
-                ],
-            },
-        }
-        EOD;
-
-        $qc->setConfig($config);
-        $chartUrl = $qc->getUrl();
-
         // Return the view with the calculated progress values and chart data
         return view('dipa01', compact(
             'progressGaji',
@@ -87,7 +63,6 @@ class Dipa01Controller extends Controller
             'totalOperasionalRealisasi',
             'progressGajiPagu',
             'progressOperasionalPagu',
-            'chartUrl',
             'totalKeperluanSehariHariPagu',
             'totalKeperluanSehariHariRealisasi',
             'totalLanggananDayaDanJasaPagu',

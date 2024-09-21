@@ -71,37 +71,37 @@
                         <td>Keperluan Sehari-hari</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalKeperluanSehariHariPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalKeperluanSehariHariRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalKeperluanSehariHariPagu > 0 ? number_format(($totalKeperluanSehariHariRealisasi / $totalKeperluanSehariHariPagu) * 100, 1) : 0 }}%</td>
+                        <td class="persentase-cell">{{ number_format(($totalKeperluanSehariHariRealisasi / $totalKeperluanSehariHariPagu) * 100, 2) }}%</td>
                     </tr>
                     <tr id="row-langganan">
                         <td>Langganan Daya dan Jasa</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalLanggananDayaDanJasaPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalLanggananDayaDanJasaRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalLanggananDayaDanJasaPagu > 0 ? number_format(($totalLanggananDayaDanJasaRealisasi / $totalLanggananDayaDanJasaPagu) * 100, 1) : 0 }}%</td>
+                        <td class="persentase-cell">{{ number_format(($totalLanggananDayaDanJasaRealisasi / $totalLanggananDayaDanJasaPagu) * 100, 2) }}%</td>
                     </tr>
                     <tr id="row-pemeliharaan">
                         <td>Pemeliharaan Kantor</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPemeliharaanKantorPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalPemeliharaanKantorRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalPemeliharaanKantorPagu > 0 ? number_format(($totalPemeliharaanKantorRealisasi / $totalPemeliharaanKantorPagu) * 100, 1) : 0 }}%</td>
+                        <td class="persentase-cell">{{ number_format(($totalPemeliharaanKantorRealisasi / $totalPemeliharaanKantorPagu) * 100, 2) }}%</td>
                     </tr>
                     <tr id="row-pembayaran">
                         <td>Pembayaran Lainnya</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPembayaranLainnyaPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalPembayaranLainnyaRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalPembayaranLainnyaPagu > 0 ? number_format(($totalPembayaranLainnyaRealisasi / $totalPembayaranLainnyaPagu) * 100, 1) : 0 }}%</td>
+                        <td class="persentase-cell">{{ number_format(($totalPembayaranLainnyaRealisasi / $totalPembayaranLainnyaPagu) * 100, 2) }}%</td>
                     </tr>
                     <tr id="row-bantuan">
                         <td>Bantuan Sewa Rumah Dinas Hakim</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalBantuanSewaRumahDinasHakimPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalBantuanSewaRumahDinasHakimRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalBantuanSewaRumahDinasHakimPagu > 0 ? number_format(($totalBantuanSewaRumahDinasHakimRealisasi / $totalBantuanSewaRumahDinasHakimPagu) * 100, 1) : 0 }}%</td>
+                        <td class="persentase-cell">{{ number_format(($totalBantuanSewaRumahDinasHakimRealisasi / $totalBantuanSewaRumahDinasHakimPagu) * 100, 2) }}%</td>
                     </tr>
                     <tr id="row-perjalanan">
                         <td>Perjalanan Dinas</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPerjalananDinasPagu, 0, ',', '.') }}</td>
                         <td class="realisasi-cell">Rp. {{ number_format($totalPerjalananDinasRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalPerjalananDinasPagu > 0 ? number_format(($totalPerjalananDinasRealisasi / $totalPerjalananDinasPagu) * 100, 1) : 0 }}%</td>
+                        <td class="persentase-cell">{{ number_format(($totalPerjalananDinasRealisasi / $totalPerjalananDinasPagu) * 100, 2) }}%</td>
                     </tr>
                 </tbody>
             </table>

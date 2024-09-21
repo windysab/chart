@@ -185,8 +185,9 @@ h2 {
     }
 
     /* stylesdipa01.css */
-    .highlight-green {
-        background-color: green;
-        color: white;
+    /* stylesdipa01.css */
+    .highlight {
+        background-color: yellow;
+        /* Change this color as needed */
     }
 }

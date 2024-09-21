@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Dipa 01</title>
     <meta charset="utf-8">
@@ -11,11 +10,8 @@
     <link rel="stylesheet" href="{{ asset('css/sytlesdipa01.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-
 </head>
-
 <body>
-
     <div class="container">
         <h2>DIPA 01</h2>
         <div class="progress">
@@ -40,8 +36,7 @@
                     </div>
                     <div class="pagu-info">Pagu: Rp. {{ number_format($totalGajiPagu, 0, ',', '.') }}</div>
                     <div class="pagu-info">Realisasi: Rp. {{ number_format($totalGajiRealisasi, 0, ',', '.') }}</div>
-                    <div class="pagu-info">Sisa: Rp.
-                        {{ number_format($totalGajiPagu - $totalGajiRealisasi, 0, ',', '.') }}</div>
+                    <div class="pagu-info">Sisa: Rp. {{ number_format($totalGajiPagu - $totalGajiRealisasi, 0, ',', '.') }}</div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -51,20 +46,16 @@
                         <canvas id="operasionalChart"></canvas>
                     </div>
                     <div class="pagu-info">Pagu: Rp. {{ number_format($totalOperasionalPagu, 0, ',', '.') }}</div>
-                    <div class="pagu-info">Realisasi: Rp. {{ number_format($totalOperasionalRealisasi, 0, ',', '.') }}
-                    </div>
-                    <div class="pagu-info">Sisa: Rp.
-                        {{ number_format($totalOperasionalPagu - $totalOperasionalRealisasi, 0, ',', '.') }}</div>
+                    <div class="pagu-info">Realisasi: Rp. {{ number_format($totalOperasionalRealisasi, 0, ',', '.') }}</div>
+                    <div class="pagu-info">Sisa: Rp. {{ number_format($totalOperasionalPagu - $totalOperasionalRealisasi, 0, ',', '.') }}</div>
                 </div>
             </div>
         </div>
 
-        <!-- Add the chart image below the progress bars -->
         <div class="chart-container mt-4">
             <canvas id="mainChart"></canvas>
         </div>
 
-        <!-- Add the table below the chart -->
         <div class="data-table mt-4">
             <table class="table table-bordered">
                 <thead>
@@ -79,51 +70,38 @@
                     <tr id="row-keperluan">
                         <td>Keperluan Sehari-hari</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalKeperluanSehariHariPagu, 0, ',', '.') }}</td>
-                        <td class="realisasi-cell">Rp.
-                            {{ number_format($totalKeperluanSehariHariRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalKeperluanSehariHariPagu > 0 ? number_format(($totalKeperluanSehariHariRealisasi / $totalKeperluanSehariHariPagu) * 100, 1) : 0 }}%
-                        </td>
+                        <td class="realisasi-cell">Rp. {{ number_format($totalKeperluanSehariHariRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalKeperluanSehariHariPagu > 0 ? number_format(($totalKeperluanSehariHariRealisasi / $totalKeperluanSehariHariPagu) * 100, 1) : 0 }}%</td>
                     </tr>
                     <tr id="row-langganan">
                         <td>Langganan Daya dan Jasa</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalLanggananDayaDanJasaPagu, 0, ',', '.') }}</td>
-                        <td class="realisasi-cell">Rp.
-                            {{ number_format($totalLanggananDayaDanJasaRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalLanggananDayaDanJasaPagu > 0 ? number_format(($totalLanggananDayaDanJasaRealisasi / $totalLanggananDayaDanJasaPagu) * 100, 1) : 0 }}%
-                        </td>
+                        <td class="realisasi-cell">Rp. {{ number_format($totalLanggananDayaDanJasaRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalLanggananDayaDanJasaPagu > 0 ? number_format(($totalLanggananDayaDanJasaRealisasi / $totalLanggananDayaDanJasaPagu) * 100, 1) : 0 }}%</td>
                     </tr>
                     <tr id="row-pemeliharaan">
                         <td>Pemeliharaan Kantor</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPemeliharaanKantorPagu, 0, ',', '.') }}</td>
-                        <td class="realisasi-cell">Rp.
-                            {{ number_format($totalPemeliharaanKantorRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalPemeliharaanKantorPagu > 0 ? number_format(($totalPemeliharaanKantorRealisasi / $totalPemeliharaanKantorPagu) * 100, 1) : 0 }}%
-                        </td>
+                        <td class="realisasi-cell">Rp. {{ number_format($totalPemeliharaanKantorRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalPemeliharaanKantorPagu > 0 ? number_format(($totalPemeliharaanKantorRealisasi / $totalPemeliharaanKantorPagu) * 100, 1) : 0 }}%</td>
                     </tr>
                     <tr id="row-pembayaran">
                         <td>Pembayaran Lainnya</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPembayaranLainnyaPagu, 0, ',', '.') }}</td>
-                        <td class="realisasi-cell">Rp.
-                            {{ number_format($totalPembayaranLainnyaRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalPembayaranLainnyaPagu > 0 ? number_format(($totalPembayaranLainnyaRealisasi / $totalPembayaranLainnyaPagu) * 100, 1) : 0 }}%
-                        </td>
+                        <td class="realisasi-cell">Rp. {{ number_format($totalPembayaranLainnyaRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalPembayaranLainnyaPagu > 0 ? number_format(($totalPembayaranLainnyaRealisasi / $totalPembayaranLainnyaPagu) * 100, 1) : 0 }}%</td>
                     </tr>
                     <tr id="row-bantuan">
                         <td>Bantuan Sewa Rumah Dinas Hakim</td>
-                        <td class="pagu-cell">Rp.
-                            {{ number_format($totalBantuanSewaRumahDinasHakimPagu, 0, ',', '.') }}</td>
-                        <td class="realisasi-cell">Rp.
-                            {{ number_format($totalBantuanSewaRumahDinasHakimRealisasi, 0, ',', '.') }}</td>
-                        <td>{{ $totalBantuanSewaRumahDinasHakimPagu > 0 ? number_format(($totalBantuanSewaRumahDinasHakimRealisasi / $totalBantuanSewaRumahDinasHakimPagu) * 100, 1) : 0 }}%
-                        </td>
+                        <td class="pagu-cell">Rp. {{ number_format($totalBantuanSewaRumahDinasHakimPagu, 0, ',', '.') }}</td>
+                        <td class="realisasi-cell">Rp. {{ number_format($totalBantuanSewaRumahDinasHakimRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalBantuanSewaRumahDinasHakimPagu > 0 ? number_format(($totalBantuanSewaRumahDinasHakimRealisasi / $totalBantuanSewaRumahDinasHakimPagu) * 100, 1) : 0 }}%</td>
                     </tr>
                     <tr id="row-perjalanan">
                         <td>Perjalanan Dinas</td>
                         <td class="pagu-cell">Rp. {{ number_format($totalPerjalananDinasPagu, 0, ',', '.') }}</td>
-                        <td class="realisasi-cell">Rp. {{ number_format($totalPerjalananDinasRealisasi, 0, ',', '.') }}
-                        </td>
-                        <td>{{ $totalPerjalananDinasPagu > 0 ? number_format(($totalPerjalananDinasRealisasi / $totalPerjalananDinasPagu) * 100, 1) : 0 }}%
-                        </td>
+                        <td class="realisasi-cell">Rp. {{ number_format($totalPerjalananDinasRealisasi, 0, ',', '.') }}</td>
+                        <td>{{ $totalPerjalananDinasPagu > 0 ? number_format(($totalPerjalananDinasRealisasi / $totalPerjalananDinasPagu) * 100, 1) : 0 }}%</td>
                     </tr>
                 </tbody>
             </table>
@@ -131,7 +109,6 @@
     </div>
 
     <script>
-        // Pass PHP variables to JavaScript
         var totalGajiRealisasi = {{ $totalGajiRealisasi }};
         var totalGajiPagu = {{ $totalGajiPagu }};
         var totalOperasionalRealisasi = {{ $totalOperasionalRealisasi }};
@@ -151,5 +128,4 @@
     </script>
     <script src="{{ asset('js/dipa01.js') }}"></script>
 </body>
-
 </html>

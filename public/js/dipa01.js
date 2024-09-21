@@ -23,34 +23,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to highlight table row based on label
-    function highlightRow(label, tableId) {
-        document.querySelectorAll(`#${tableId} tr`).forEach(row => {
-            if (row.dataset.label === label) {
-                row.classList.add('highlight');
-            } else {
-                row.classList.remove('highlight');
-            }
-        });
-    }
-
-    // Function to highlight table row in green based on label
-    function highlightGreenRow(label) {
+    function highlightRow(label) {
         document.querySelectorAll('.data-table tr').forEach(row => {
-            row.classList.remove('highlight-green');
+            row.classList.remove('highlight');
         });
 
         if (label === 'Keperluan Sehari-hari') {
-            document.getElementById('row-keperluan').classList.add('highlight-green');
+            document.getElementById('row-keperluan').classList.add('highlight');
         } else if (label === 'Langganan Daya dan Jasa') {
-            document.getElementById('row-langganan').classList.add('highlight-green');
+            document.getElementById('row-langganan').classList.add('highlight');
         } else if (label === 'Pemeliharaan Kantor') {
-            document.getElementById('row-pemeliharaan').classList.add('highlight-green');
+            document.getElementById('row-pemeliharaan').classList.add('highlight');
         } else if (label === 'Pembayaran Lainnya') {
-            document.getElementById('row-pembayaran').classList.add('highlight-green');
+            document.getElementById('row-pembayaran').classList.add('highlight');
         } else if (label === 'Bantuan Sewa Rumah Dinas Hakim') {
-            document.getElementById('row-bantuan').classList.add('highlight-green');
+            document.getElementById('row-bantuan').classList.add('highlight');
         } else if (label === 'Perjalanan Dinas') {
-            document.getElementById('row-perjalanan').classList.add('highlight-green');
+            document.getElementById('row-perjalanan').classList.add('highlight');
         }
     }
 
@@ -201,9 +190,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (item.length) {
                     var index = item[0].index;
                     var label = mainChart.data.labels[index];
-                    highlightGreenRow(label);
+                    highlightRow(label);
                 } else {
-                    highlightGreenRow(null);
+                    highlightRow(null);
                 }
             }
         }

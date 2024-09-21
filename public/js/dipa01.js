@@ -150,6 +150,9 @@ var mainChart = new Chart(mainChartCtx, {
                         return label + ': ' + formatRupiah(value);
                     }
                 }
+            },
+            datalabels: {
+                display: false  // Menyembunyikan nilai di dalam chart
             }
         }
     }

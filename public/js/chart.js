@@ -9,21 +9,42 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function removeDuplicates(array) {
+        return array.filter((item, index) => array.indexOf(item) === index);
+    }
+
+    function removeDuplicateData(labels, data) {
+        const uniqueLabels = removeDuplicates(labels);
+        const uniqueData = uniqueLabels.map(label => {
+            const index = labels.indexOf(label);
+            return data[index];
+        });
+        return uniqueData;
+    }
+
     // Initialize myChart
+    const labels1 = JSON.parse(document.getElementById('chartLabels').textContent);
+    const paguData1 = JSON.parse(document.getElementById('paguData').textContent);
+    const realisasiData1 = JSON.parse(document.getElementById('realisasiData').textContent);
+
+    const uniqueLabels1 = removeDuplicates(labels1);
+    const uniquePaguData1 = removeDuplicateData(labels1, paguData1);
+    const uniqueRealisasiData1 = removeDuplicateData(labels1, realisasiData1);
+
     const ctx1 = document.getElementById('myChart').getContext('2d');
     const chartData1 = {
-        labels: JSON.parse(document.getElementById('chartLabels').textContent),
+        labels: uniqueLabels1,
         datasets: [
             {
                 label: 'Pagu',
-                data: JSON.parse(document.getElementById('paguData').textContent),
+                data: uniquePaguData1,
                 backgroundColor: '#f44336',
                 borderColor: '#f44336',
                 borderWidth: 1
             },
             {
                 label: 'Realisasi',
-                data: JSON.parse(document.getElementById('realisasiData').textContent),
+                data: uniqueRealisasiData1,
                 backgroundColor: '#20B2AA',
                 borderColor: '#20B2AA',
                 borderWidth: 1
@@ -55,20 +76,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const myChart = new Chart(ctx1, config1);
 
     // Initialize myChart2
+    const labels2 = JSON.parse(document.getElementById('chartLabels2').textContent);
+    const paguData2 = JSON.parse(document.getElementById('P').textContent);
+    const realisasiData2 = JSON.parse(document.getElementById('R').textContent);
+
+    const uniqueLabels2 = removeDuplicates(labels2);
+    const uniquePaguData2 = removeDuplicateData(labels2, paguData2);
+    const uniqueRealisasiData2 = removeDuplicateData(labels2, realisasiData2);
+
     const ctx2 = document.getElementById('myChart2').getContext('2d');
     const chartData2 = {
-        labels: JSON.parse(document.getElementById('chartLabels2').textContent),
+        labels: uniqueLabels2,
         datasets: [
             {
                 label: 'Pagu',
-                data: JSON.parse(document.getElementById('P').textContent),
+                data: uniquePaguData2,
                 backgroundColor: '#ffcc00',
                 borderColor: '#ffcc00',
                 borderWidth: 1
             },
             {
                 label: 'Realisasi',
-                data: JSON.parse(document.getElementById('R').textContent),
+                data: uniqueRealisasiData2,
                 backgroundColor: '#3366cc',
                 borderColor: '#3366cc',
                 borderWidth: 1
@@ -98,4 +127,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
     const myChart2 = new Chart(ctx2, config2);
+
+    console.log('Chart Labels:', chartData1.labels);
+    console.log('Chart Data Pagu:', chartData1.datasets[0].data);
+    console.log('Chart Data Realisasi:', chartData1.datasets[1].data);
 });

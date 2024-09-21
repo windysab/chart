@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($chartData as $index => $data)
+                    @foreach ($chartData->unique('label') as $index => $data)
                         <tr class="row-color-{{ $index % 5 }}" data-label="{{ $data->label }}">
                             <td class="td1">{{ $data->label }}</td>
                             <td class="td2">{{ 'Rp. ' . number_format($data->pagu, 0, ',', '.') }}</td>

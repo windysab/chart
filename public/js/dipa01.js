@@ -149,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Membuat chart bar untuk Main Chart
-    var mainChartCtx = document.getElementById('mainChart').getContext('2d');
-    var mainChart = new Chart(mainChartCtx, {
+    const mainChartCtx = document.getElementById('mainChart').getContext('2d');
+    const mainChart = new Chart(mainChartCtx, {
         type: 'bar',
         data: {
             labels: [
@@ -203,32 +203,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     display: false  // Menyembunyikan nilai di dalam chart
                 }
             },
-            onHover: function(event, chartElement) {
-                // Menghapus highlight dari semua baris
-                document.querySelectorAll('.data-table tr').forEach(function(row) {
-                    row.classList.remove('highlight');
-                });
-
-                // Menambahkan highlight pada baris yang sesuai
-                if (chartElement.length) {
-                    var index = chartElement[0].index;
-                    var label = mainChart.data.labels[index];
-                    highlightRow(label, 'data-table');
-                }
-            },
-            onClick: function(event, chartElement) {
-                // Menghapus highlight hijau dari semua baris
-                document.querySelectorAll('.data-table tr').forEach(function(row) {
-                    row.classList.remove('highlight-green');
-                });
-
-                // Menambahkan highlight hijau pada baris yang sesuai
-                if (chartElement.length) {
-                    var index = chartElement[0].index;
+            onHaveHover: function (evt, item) {
+                if (item.length) {
+                    var index = item[0].index;
                     var label = mainChart.data.labels[index];
                     highlightGreenRow(label);
+                } else {
+                    highlightGreenRow(null);
                 }
             }
+
         }
     });
 });

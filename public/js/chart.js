@@ -1,4 +1,3 @@
-// chart.js
 document.addEventListener('DOMContentLoaded', function () {
     function highlightRow(label, tableId) {
         document.querySelectorAll(`#${tableId} tr`).forEach(row => {

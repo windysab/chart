@@ -184,7 +184,8 @@ h2 {
         width: 100%;
     }
 
-    .highlight {
-        background-color: #077120; /* Warna hijau muda */
+    .highlight-green {
+        background-color: green;
+        color: white;
     }
 }

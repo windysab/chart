@@ -48,6 +48,8 @@ php artisan db:seed --class=RealisasiSeeder
 php artisan make:controller TestDBController
 php artisan key:generate
 
+php artisan serve --port=8080
+
 
 chmod -R 775 storage
 chmod -R 775 bootstrap/cache

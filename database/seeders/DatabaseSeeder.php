@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\StastistikPerkara;
 use Illuminate\Database\Seeder;
 use Database\Seeders\ChartDataSeeder;
 
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ChartDataSeeder::class);
         $this->call(RealisasiSeeder::class);
         $this->call(Dipa01DataSeeder::class);
+        $this->call(StastistikPerkaraSeeder::class);
     }
 }

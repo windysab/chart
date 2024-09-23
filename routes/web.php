@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\Dipa01Controller;
 use App\Http\Controllers\TestDBController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RealisasiController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StastistikPerkaraController;
 
 Route::get('/', function () {
     return view('blank-page', ['type_menu' => 'dashboard']);
@@ -17,6 +18,8 @@ Route::get('/chart', [ChartController::class, 'showChart']);
 
 Route::get('/realisasi', [RealisasiController::class, 'index']);
 
+
+Route::get('/stastistik_perkara', [StastistikPerkaraController::class, 'index']);
 
 // Route::get('/realisasi/data', [RealisasiController::class, 'getData']);
 

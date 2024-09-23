@@ -27,75 +27,43 @@ class StastistikPerkaraController extends Controller
             'version' => '2.9.4',
         ));
 
-        $qc->setConfig([
-            'type' => 'bar',
+        $config = [
+            'type' => 'line',
             'data' => [
                 'labels' => $labels,
                 'datasets' => [
                     [
                         'label' => 'Sisa Lama',
                         'data' => $sisa_lama,
-                        'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
-                        'borderColor' => 'rgb(255, 99, 132)',
-                        'borderWidth' => 1
                     ],
                     [
                         'label' => 'Perkara Masuk',
                         'data' => $perkara_masuk,
-                        'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
-                        'borderColor' => 'rgb(54, 162, 235)',
-                        'borderWidth' => 1
                     ],
                     [
                         'label' => 'Perkara Putus',
                         'data' => $perkara_putus,
-                        'backgroundColor' => 'rgba(255, 206, 86, 0.2)',
-                        'borderColor' => 'rgb(255, 206, 86)',
-                        'borderWidth' => 1
                     ],
                     [
                         'label' => 'Sisa Baru',
                         'data' => $sisa_baru,
-                        'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
-                        'borderColor' => 'rgb(75, 192, 192)',
-                        'borderWidth' => 1
                     ],
                     [
                         'label' => 'Rasio',
                         'data' => $rasio,
-                        'backgroundColor' => 'rgba(153, 102, 255, 0.2)',
-                        'borderColor' => 'rgb(153, 102, 255)',
-                        'borderWidth' => 1
                     ],
                     [
                         'label' => 'E-court',
                         'data' => $e_court,
-                        'backgroundColor' => 'rgba(255, 159, 64, 0.2)',
-                        'borderColor' => 'rgb(255, 159, 64)',
-                        'borderWidth' => 1
                     ],
                     [
                         'label' => 'BHT',
                         'data' => $bht,
-                        'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
-                        'borderColor' => 'rgb(255, 99, 132)',
-                        'borderWidth' => 1
                     ],
                 ],
             ],
-            'options' => [
-                'scales' => [
-                    'yAxes' => [
-                        [
-                            'ticks' => [
-                                'beginAtZero' => true
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]);
-
+        ];
+        $qc->setConfig(json_encode($config));
         $chartUrl = $qc->getUrl();
 
         return view('stastistik_perkara', compact('labels', 'sisa_lama', 'perkara_masuk', 'perkara_putus', 'sisa_baru', 'rasio', 'e_court', 'bht', 'chartUrl'));

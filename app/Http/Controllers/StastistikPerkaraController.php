@@ -33,33 +33,30 @@ class StastistikPerkaraController extends Controller
                 'labels' => $labels,
                 'datasets' => [
                     [
-                        'label' => 'Sisa Lama',
+
                         'data' => $sisa_lama,
+                        'fill' => false,
+                        'borderColor' => 'rgb(75, 192, 192)',
                     ],
                     [
-                        'label' => 'Perkara Masuk',
+
                         'data' => $perkara_masuk,
+                        'fill' => false,
+                        'borderColor' => 'rgb(255, 99, 132)',
                     ],
                     [
-                        'label' => 'Perkara Putus',
+
                         'data' => $perkara_putus,
+                        'fill' => false,
+                        'borderColor' => 'rgb(54, 162, 235)',
                     ],
                     [
-                        'label' => 'Sisa Baru',
+
                         'data' => $sisa_baru,
+                        'fill' => false,
+                        'borderColor' => 'rgb(255, 205, 86)',
                     ],
-                    [
-                        'label' => 'Rasio',
-                        'data' => $rasio,
-                    ],
-                    [
-                        'label' => 'E-court',
-                        'data' => $e_court,
-                    ],
-                    [
-                        'label' => 'BHT',
-                        'data' => $bht,
-                    ],
+
                 ],
             ],
         ];

@@ -17,7 +17,7 @@ class StastistikPerkaraSeeder extends Seeder
             // ['Gugatan Perdata', 59, 61, 62, 58, 67.2, 101.6, 62],
             // ['Permohonan', 9, 24, 17, 16, 8.3, 70.8, 31],
             [
-                'nama_perkara' => 'Gugatan Perdata',
+                'nama_perkara' => 'Gugatan',
                 'sisa_lama' => 59,
                 'perkara_masuk' => 61,
                 'perkara_putus' => 62,

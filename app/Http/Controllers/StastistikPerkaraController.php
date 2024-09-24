@@ -12,18 +12,17 @@ class StastistikPerkaraController extends Controller
     {
         $data = StastistikPerkara::all();
 
-        $labels = $data->pluck('jenis_perkara')->toArray();
+        $labels = $data->pluck('nama_perkara')->toArray();
         $sisa_lama = $data->pluck('sisa_lama')->toArray();
         $perkara_masuk = $data->pluck('perkara_masuk')->toArray();
         $perkara_putus = $data->pluck('perkara_putus')->toArray();
         $sisa_baru = $data->pluck('sisa_baru')->toArray();
-        $rasio = $data->pluck('rasio')->toArray();
-        $e_court = $data->pluck('e_court')->toArray();
-        $bht = $data->pluck('bht')->toArray();
+        $gugatan = $data->pluck('gugatan')->toArray();
+        $permohonan = $data->pluck('permohonan')->toArray();
 
         $qc = new QuickChart(array(
-            'width' => 500,
-            'height' => 300,
+            'width' => 800,
+            'height' => 400,
             'version' => '2.9.4',
         ));
 
@@ -33,36 +32,41 @@ class StastistikPerkaraController extends Controller
                 'labels' => $labels,
                 'datasets' => [
                     [
-
-                        'data' => $sisa_lama,
-                        'fill' => false,
+                        'label' => 'Gugatan',
+                        'data' => $gugatan,
+                        'fill' => true,
+                        'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
                         'borderColor' => 'rgb(75, 192, 192)',
+                        'tension' => 0.1,
                     ],
                     [
-
-                        'data' => $perkara_masuk,
-                        'fill' => false,
+                        'label' => 'Permohonan',
+                        'data' => $permohonan,
+                        'fill' => true,
+                        'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
                         'borderColor' => 'rgb(255, 99, 132)',
+                        'tension' => 0.1,
                     ],
-                    [
-
-                        'data' => $perkara_putus,
-                        'fill' => false,
-                        'borderColor' => 'rgb(54, 162, 235)',
+                ],
+            ],
+            'options' => [
+                'plugins' => [
+                    'title' => [
+                        'display' => true,
+                        'text' => 'Stastistik Perkara',
                     ],
-                    [
-
-                        'data' => $sisa_baru,
-                        'fill' => false,
-                        'borderColor' => 'rgb(255, 205, 86)',
+                ],
+                'scales' => [
+                    'y' => [
+                        'beginAtZero' => true,
                     ],
-
                 ],
             ],
         ];
+
         $qc->setConfig(json_encode($config));
         $chartUrl = $qc->getUrl();
 
-        return view('stastistik_perkara', compact('labels', 'sisa_lama', 'perkara_masuk', 'perkara_putus', 'sisa_baru', 'rasio', 'e_court', 'bht', 'chartUrl'));
+        return view('stastistik_perkara', compact('chartUrl', 'sisa_lama', 'perkara_masuk', 'perkara_putus', 'sisa_baru', 'labels'));
     }
 }

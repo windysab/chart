@@ -13,12 +13,24 @@ class StastistikPerkaraController extends Controller
         $data = StastistikPerkara::all();
 
         $labels = ['Sisa Lama', 'Perkara Masuk', 'Perkara Putus', 'Sisa Baru'];
-        $perkara = $data->pluck('nama_perkara')->toArray();
-        $sisa_lama = $data->pluck('sisa_lama')->toArray();
-        $perkara_masuk = $data->pluck('perkara_masuk')->toArray();
-        $perkara_putus = $data->pluck('perkara_putus')->toArray();
-        $sisa_baru = $data->pluck('sisa_baru')->toArray();
 
+        // Filter data for 'Gugatan' and 'Permohonan'
+        $gugatan = $data->where('nama_perkara', 'Gugatan')->first();
+        $permohonan = $data->where('nama_perkara', 'Permohonan')->first();
+
+        $gugatanData = [
+            $gugatan->sisa_lama,
+            $gugatan->perkara_masuk,
+            $gugatan->perkara_putus,
+            $gugatan->sisa_baru,
+        ];
+
+        $permohonanData = [
+            $permohonan->sisa_lama,
+            $permohonan->perkara_masuk,
+            $permohonan->perkara_putus,
+            $permohonan->sisa_baru,
+        ];
 
         $qc = new QuickChart(array(
             'width' => 800,
@@ -33,7 +45,7 @@ class StastistikPerkaraController extends Controller
                 'datasets' => [
                     [
                         'label' => 'Gugatan',
-                        'data' => $sisa_lama,
+                        'data' => $gugatanData,
                         'fill' => true,
                         'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
                         'borderColor' => 'rgb(75, 192, 192)',
@@ -41,7 +53,7 @@ class StastistikPerkaraController extends Controller
                     ],
                     [
                         'label' => 'Permohonan',
-                        'data' => $perkara_masuk,
+                        'data' => $permohonanData,
                         'fill' => true,
                         'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
                         'borderColor' => 'rgb(255, 99, 132)',
@@ -67,6 +79,15 @@ class StastistikPerkaraController extends Controller
         $qc->setConfig(json_encode($config));
         $chartUrl = $qc->getUrl();
 
-        return view('stastistik_perkara', compact('chartUrl', 'sisa_lama', 'perkara_masuk', 'perkara_putus', 'sisa_baru', 'labels', 'perkara'));
+        // Pass the necessary variables to the view
+        return view('stastistik_perkara', [
+            'chartUrl' => $chartUrl,
+            'labels' => $labels,
+            'perkara' => ['Gugatan', 'Permohonan'],
+            'sisa_lama' => [$gugatan->sisa_lama, $permohonan->sisa_lama],
+            'perkara_masuk' => [$gugatan->perkara_masuk, $permohonan->perkara_masuk],
+            'perkara_putus' => [$gugatan->perkara_putus, $permohonan->perkara_putus],
+            'sisa_baru' => [$gugatan->sisa_baru, $permohonan->sisa_baru],
+        ]);
     }
 }

@@ -166,3 +166,17 @@ Untuk menyamakan data antara dua cabang (branch) di Git, Anda dapat menggunakan 
     6. Dorong perubahan ke remote repository.
 
     Jika Anda memerlukan bantuan lebih lanjut atau ada konflik yang sulit diselesaikan, beri tahu saya!
+# Inisialisasi repositori Git
+git init
+
+# Tambahkan semua file ke staging area
+git add .
+
+# Commit perubahan
+git commit -m "Initial commit"
+
+# Tambahkan remote origin
+git remote add origin https://github.com/username/repository.git
+
+# Push perubahan ke repositori remote
+git push -u origin master

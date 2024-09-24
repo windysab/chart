@@ -7,16 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 label: 'Gugatan',
                 data: gugatanData, // Gunakan variabel JavaScript
                 fill: true,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)', // Warna merah
+                borderColor: 'rgb(255, 99, 132)', // Warna merah
                 tension: 0.1,
             },
             {
                 label: 'Permohonan',
                 data: permohonanData, // Gunakan variabel JavaScript
                 fill: true,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Warna hijau
+                borderColor: 'rgb(75, 192, 192)', // Warna hijau
                 tension: 0.1,
             },
         ],

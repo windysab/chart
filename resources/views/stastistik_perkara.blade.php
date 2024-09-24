@@ -65,7 +65,7 @@
             </tr>
             @foreach($sisa_lama as $index => $value)
             <tr>
-                <td>{{ $labels[$index] }}</td>
+                <td>{{ $perkara[$index] }}</td>
                 <td>{{ $value }}</td>
                 <td>{{ $perkara_masuk[$index] }}</td>
                 <td>{{ $perkara_putus[$index] }}</td>

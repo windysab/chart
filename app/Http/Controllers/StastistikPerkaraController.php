@@ -12,7 +12,7 @@ class StastistikPerkaraController extends Controller
     {
         $data = StastistikPerkara::all();
 
-        $labels = $data->pluck('nama_perkara')->toArray();
+        $labels = ['Sisa Lama', 'Perkara Masuk', 'Perkara Putus', 'Sisa Baru'];
         $sisa_lama = $data->pluck('sisa_lama')->toArray();
         $perkara_masuk = $data->pluck('perkara_masuk')->toArray();
         $perkara_putus = $data->pluck('perkara_putus')->toArray();
@@ -33,7 +33,7 @@ class StastistikPerkaraController extends Controller
                 'datasets' => [
                     [
                         'label' => 'Gugatan',
-                        'data' => $gugatan,
+                        'data' => $sisa_lama,
                         'fill' => true,
                         'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
                         'borderColor' => 'rgb(75, 192, 192)',
@@ -41,7 +41,7 @@ class StastistikPerkaraController extends Controller
                     ],
                     [
                         'label' => 'Permohonan',
-                        'data' => $permohonan,
+                        'data' => $perkara_masuk,
                         'fill' => true,
                         'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
                         'borderColor' => 'rgb(255, 99, 132)',

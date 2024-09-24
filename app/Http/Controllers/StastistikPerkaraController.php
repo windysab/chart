@@ -41,7 +41,7 @@ class StastistikPerkaraController extends Controller
                     ],
                     [
                         'label' => 'Permohonan',
-                        'data' => $perkara_masuk,
+                        'data' => $permohonan,
                         'fill' => true,
                         'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
                         'borderColor' => 'rgb(255, 99, 132)',

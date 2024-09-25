@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/sytlesdipa01.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <style>
+        .highlight {
+            background-color: yellow !important; /* Atau warna lain yang mencolok */
+        }
+    </style>
 </head>
 <body>
     <div class="container">

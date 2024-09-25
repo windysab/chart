@@ -7,39 +7,49 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'Rp. ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
-    // Function to remove duplicates from array
-    function removeDuplicates(array) {
-        return array.filter((item, index) => array.indexOf(item) === index);
-    }
-
-    // Function to remove duplicate data based on labels
-    function removeDuplicateData(labels, data) {
-        const uniqueLabels = removeDuplicates(labels);
-        const uniqueData = uniqueLabels.map(label => {
-            const index = labels.indexOf(label);
-            return data[index];
-        });
-        return uniqueData;
-    }
-
     // Function to highlight table row based on label
     function highlightRow(label) {
         document.querySelectorAll('.data-table tr').forEach(row => {
             row.classList.remove('highlight');
         });
 
-        if (label === 'Keperluan Sehari-hari') {
-            document.getElementById('row-keperluan').classList.add('highlight');
-        } else if (label === 'Langganan Daya dan Jasa') {
-            document.getElementById('row-langganan').classList.add('highlight');
-        } else if (label === 'Pemeliharaan Kantor') {
-            document.getElementById('row-pemeliharaan').classList.add('highlight');
-        } else if (label === 'Pembayaran Lainnya') {
-            document.getElementById('row-pembayaran').classList.add('highlight');
-        } else if (label === 'Bantuan Sewa Rumah Dinas Hakim') {
-            document.getElementById('row-bantuan').classList.add('highlight');
-        } else if (label === 'Perjalanan Dinas') {
-            document.getElementById('row-perjalanan').classList.add('highlight');
+        if (label) {
+            let rowId;
+            switch (label) {
+                case 'Keperluan Sehari-hari':
+                    rowId = 'row-keperluan';
+                    break;
+                case 'Langganan Daya dan Jasa':
+                    rowId = 'row-langganan';
+                    break;
+                case 'Pemeliharaan Kantor':
+                    rowId = 'row-pemeliharaan';
+                    break;
+                case 'Pembayaran Lainnya':
+                    rowId = 'row-pembayaran';
+                    break;
+                case 'Bantuan Sewa Rumah Dinas Hakim':
+                    rowId = 'row-bantuan';
+                    break;
+                case 'Perjalanan Dinas':
+                    rowId = 'row-perjalanan';
+                    break;
+                default:
+                    rowId = null;
+            }
+
+            if (rowId) {
+                const row = document.getElementById(rowId);
+                if (row) {
+                    row.classList.add('highlight');
+                } else {
+                    console.log(`Row with ID ${rowId} not found`);
+                }
+            } else {
+                console.log('Label is null or does not match any row');
+            }
+        } else {
+            console.log('Label is null');
         }
     }
 
@@ -188,8 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             onHover: function (evt, item) {
                 if (item.length) {
-                    var index = item[0].index;
-                    var label = mainChart.data.labels[index];
+                    const label = item[0].element.$context.raw.label;
                     highlightRow(label);
                 } else {
                     highlightRow(null);

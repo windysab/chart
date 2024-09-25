@@ -160,6 +160,30 @@ h2 {
     /* Sesuaikan dengan lebar maksimum tabel */
     margin: 0 auto;
     /* Center the table */
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.data-table th {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.data-table tr:hover {
+    background-color: #ddd;
+}
+
+.highlight {
+    background-color: yellow !important; /* Atau warna lain yang mencolok */
 }
 
 @media (max-width: 768px) {
@@ -182,12 +206,5 @@ h2 {
 
     .half-chart canvas {
         width: 100%;
-    }
-
-    /* stylesdipa01.css */
-    /* stylesdipa01.css */
-    .highlight {
-        background-color: yellow;
-        /* Change this color as needed */
     }
 }

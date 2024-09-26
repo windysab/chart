@@ -1,0 +1,218 @@
+{source}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Foto dan Jadwal Sidang</title>
+    <style>
+        .video-container {
+            width: 100%;
+            max-width:950px;
+            /* Sesuaikan dengan ukuran yang diinginkan */
+            margin: 0 auto;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 315px;
+        }
+
+        /* Gaya untuk kontainer slide */
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Gaya untuk gambar slide */
+        .mySlides {
+            display: none;
+        }
+
+        /* Gaya untuk tombol sebelum dan sesudah */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Gaya untuk tombol sebelum */
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Gaya untuk tombol sesudah */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Gaya untuk indikator slide */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        /* Gaya untuk kontainer jadwal sidang dan CCTV */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Gaya untuk iframe jadwal sidang dan CCTV */
+        .iframe-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="video-container">
+
+            <iframe src="https://www.youtube.com/embed/Ye2-fJ4sGKM" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+        </div>
+        <div>
+            <h2>Jadwal Sidang</h2>
+            <iframe class="jadwal-sidang iframe-container" title="List Jadwal Sidang"
+                src="https://sipp.pa-amuntai.go.id/list_jadwal_sidang" name="iframe1" width="900" height="400"
+                scrolling="auto"></iframe>
+        </div>
+        <div>
+            <h2>CCTV PENGADILAN AGAMA AMUNTAI KELAS IB</h2>
+            <div style="position: relative;">
+                <iframe class="cctv iframe-container" title="CCTV Pengadilan Agama Amuntai Kelas IB"
+                    src="https://ppid.pa-amuntai.go.id/" name="iframe2" width="900" height="400"
+                    scrolling="auto"></iframe>
+                <div onclick="window.open('https://ppid.pa-amuntai.go.id/', '_blank')"
+                    style="position: absolute; top: 0; left: 0; width: 900px; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="slideshow-container">
+        <!-- Gambar Slide -->
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/f.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/g.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/h.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/i.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/j.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/k.jpg" style="width:100%">
+        </div>
+
+        <!-- Tombol sebelum dan sesudah -->
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <!-- Indikator slide -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+        </div>
+    </div>
+
+    <!-- Second Slideshow Container -->
+    <div class="slideshow-container">
+        <!-- Gambar Slide -->
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/l.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <img src="file_attach/fhoto ucapan/m.jpg" style="width:100%">
+        </div>
+
+
+        <!-- Tombol sebelum dan sesudah -->
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <!-- Indikator slide -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+           
+    </div>
+
+    <script>
+        var slideIndex = 1;
+        var slideInterval = 6000; // Ganti dengan interval yang diinginkan (dalam milidetik)
+
+        showSlides(slideIndex);
+        autoSlide(); // Panggil fungsi autoSlide saat halaman dimuat
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        function autoSlide() {
+            setInterval(function () {
+                plusSlides(1);
+            }, slideInterval);
+        }
+    </script>
+</body>
+
+</html>
+{/source}
